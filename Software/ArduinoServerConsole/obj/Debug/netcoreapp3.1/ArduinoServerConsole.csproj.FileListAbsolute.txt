@@ -1,0 +1,13 @@
+C:\Users\boris\source\repos\ArduinoPanel\ArduinoServerConsole\obj\Debug\netcoreapp3.1\ArduinoServerConsole.csprojAssemblyReference.cache
+C:\Users\boris\source\repos\ArduinoPanel\ArduinoServerConsole\obj\Debug\netcoreapp3.1\ArduinoServerConsole.AssemblyInfoInputs.cache
+C:\Users\boris\source\repos\ArduinoPanel\ArduinoServerConsole\obj\Debug\netcoreapp3.1\ArduinoServerConsole.AssemblyInfo.cs
+C:\Users\boris\source\repos\ArduinoPanel\ArduinoServerConsole\obj\Debug\netcoreapp3.1\ArduinoServerConsole.csproj.CoreCompileInputs.cache
+C:\Users\boris\source\repos\ArduinoPanel\ArduinoServerConsole\bin\Debug\netcoreapp3.1\ArduinoServerConsole.exe
+C:\Users\boris\source\repos\ArduinoPanel\ArduinoServerConsole\bin\Debug\netcoreapp3.1\ArduinoServerConsole.deps.json
+C:\Users\boris\source\repos\ArduinoPanel\ArduinoServerConsole\bin\Debug\netcoreapp3.1\ArduinoServerConsole.runtimeconfig.json
+C:\Users\boris\source\repos\ArduinoPanel\ArduinoServerConsole\bin\Debug\netcoreapp3.1\ArduinoServerConsole.runtimeconfig.dev.json
+C:\Users\boris\source\repos\ArduinoPanel\ArduinoServerConsole\bin\Debug\netcoreapp3.1\ArduinoServerConsole.dll
+C:\Users\boris\source\repos\ArduinoPanel\ArduinoServerConsole\bin\Debug\netcoreapp3.1\ArduinoServerConsole.pdb
+C:\Users\boris\source\repos\ArduinoPanel\ArduinoServerConsole\obj\Debug\netcoreapp3.1\ArduinoServerConsole.dll
+C:\Users\boris\source\repos\ArduinoPanel\ArduinoServerConsole\obj\Debug\netcoreapp3.1\ArduinoServerConsole.pdb
+C:\Users\boris\source\repos\ArduinoPanel\ArduinoServerConsole\obj\Debug\netcoreapp3.1\ArduinoServerConsole.genruntimeconfig.cache

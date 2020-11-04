@@ -1,0 +1,18 @@
+﻿<Window x:Class="ArduinoPanel.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ArduinoPanel"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <TextBox x:Name="PortInput" HorizontalAlignment="Left" Margin="545,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="24"/>
+        <Button x:Name="ArduinoConnect" Content="Maak verbinding" HorizontalAlignment="Left" Margin="420,46,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Portnaam" HorizontalAlignment="Left" Margin="420,10,0,0" VerticalAlignment="Top" Height="24" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <ListBox x:Name="Messages" Margin="10,39,391,119"/>
+        <Button x:Name="ArduinoDisconnect" Content="Verbreek verbinding" HorizontalAlignment="Left" Margin="545,46,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Berichten" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="24" Width="115" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Button x:Name="ServerConnect" Content="Maak verbinding met server" HorizontalAlignment="Left" Margin="420,71,0,0" VerticalAlignment="Top" Width="245"/>
+    </Grid>
+</Window>
