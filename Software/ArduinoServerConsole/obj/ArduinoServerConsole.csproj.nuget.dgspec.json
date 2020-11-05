@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\boris\\source\\repos\\ArduinoServerConsole\\ArduinoServerConsole.csproj": {}
+    "C:\\Users\\boris\\OneDrive\\Bureaublad\\Project\\design-challenge\\Software\\ArduinoServerConsole\\ArduinoServerConsole.csproj": {}
   },
   "projects": {
-    "C:\\Users\\boris\\source\\repos\\ArduinoServerConsole\\ArduinoServerConsole.csproj": {
+    "C:\\Users\\boris\\OneDrive\\Bureaublad\\Project\\design-challenge\\Software\\ArduinoServerConsole\\ArduinoServerConsole.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\boris\\source\\repos\\ArduinoServerConsole\\ArduinoServerConsole.csproj",
+        "projectUniqueName": "C:\\Users\\boris\\OneDrive\\Bureaublad\\Project\\design-challenge\\Software\\ArduinoServerConsole\\ArduinoServerConsole.csproj",
         "projectName": "ArduinoServerConsole",
-        "projectPath": "C:\\Users\\boris\\source\\repos\\ArduinoServerConsole\\ArduinoServerConsole.csproj",
+        "projectPath": "C:\\Users\\boris\\OneDrive\\Bureaublad\\Project\\design-challenge\\Software\\ArduinoServerConsole\\ArduinoServerConsole.csproj",
         "packagesPath": "C:\\Users\\boris\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\boris\\source\\repos\\ArduinoServerConsole\\obj\\",
+        "outputPath": "C:\\Users\\boris\\OneDrive\\Bureaublad\\Project\\design-challenge\\Software\\ArduinoServerConsole\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\boris\\AppData\\Roaming\\NuGet\\NuGet.Config",
