@@ -87,11 +87,7 @@ body{
     place-self: center;
       
 }
-#box1 img{
-    width: 10vh;
-    max-width: 10vh;
-    min-width: 10vh;
-}
+
 
 #box1:hover{
     place-self: center;
@@ -159,13 +155,13 @@ body{
   #item1 {
     grid-column: 1 / span 4;
     grid-row: 1;
-    background-color: rgba(94, 32, 119, 0.8);
+    background-color: rgba(238, 195, 255, 0.8);
   }
   
   #item2 {
     grid-column: 1 / span 4;
     grid-row: 2;
-    background-color: rgba(163, 67, 142, 0.8);
+    background-color: rgba(183, 207, 238, 0.8);
   }
   
   #item3 {
