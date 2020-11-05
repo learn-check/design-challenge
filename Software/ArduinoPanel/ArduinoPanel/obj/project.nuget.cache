@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vtgIrWX5erw/KjvG1kJawo5xVBGZgdloY+3yqrd6iYSvO+WdjRUbsJ51mjlSK5OuBFM3POlMyGp0GFjRPj0AsA==",
+  "dgSpecHash": "Mok509lFChFohyV3Y0080iXDXFmCEmWGQowzK6ZvmpipTfhmVXVI7qZ++BuwrXUO+eZQuogLpjPec5IBO5zpYw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\boris\\source\\repos\\ArduinoPanel\\ArduinoPanel\\ArduinoPanel.csproj",
+  "projectFilePath": "C:\\Users\\boris\\OneDrive\\Bureaublad\\Project\\design-challenge\\Software\\ArduinoPanel\\ArduinoPanel\\ArduinoPanel.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\boris\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\boris\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
