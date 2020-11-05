@@ -15,7 +15,11 @@ namespace ArduinoServerConsole
     class Program
     {
         private static int PORT = 43594;
-        private static IPAddress HOST = IPAddress.Parse("127.0.0.1"); // for now
+#if DEBUG
+        private static IPAddress HOST = IPAddress.Parse("127.0.0.1"); // Localhost
+#else
+        private static IPAddress HOST = IPAddress.Parse("0.0.0.0"); // Live
+#endif
         private static bool Running = true;
 
         static void Main(string[] args)
@@ -33,6 +37,7 @@ namespace ArduinoServerConsole
                 ThreadPool.QueueUserWorkItem(client.HandleConnection);
             
             }
+
             DisplayMessage("Server stopped");
             DisplayMessage("Press any key to exit");
             Console.ReadKey();

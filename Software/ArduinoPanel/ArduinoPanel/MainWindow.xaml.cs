@@ -42,7 +42,7 @@ namespace ArduinoPanel
 #endif
             ArduinoConnect.Click += (e, s) => TryConnect();
             
-            ArduinoDisconnect.Click += (e, s) => TryDisconnect();
+            ArduinoDisconnect.Click += (e, s) => TryDisconnectArduino();
 
             ServerConnect.Click += (e, s) => HandleServerConnection();
 
@@ -59,6 +59,7 @@ namespace ArduinoPanel
             var serial = (SerialPort) port;
 
             var data = serial.ReadExisting();
+
             if (!string.IsNullOrEmpty(data) && data.Last() == '\n' && data != "-1")
             {
                 Dispatcher.Invoke(new Action(() => {
@@ -82,14 +83,14 @@ namespace ArduinoPanel
         /// <summary>
         /// Tries to close the connection on given com port
         /// </summary>
-        private void TryDisconnect()
+        private void TryDisconnectArduino()
         {
             if (!Arduino.IsOpen) return;
 
             try
             {
                 Arduino.Close();
-                DisplayMessage("[INFO] Verbinding is gesloten");
+                DisplayMessage("[ARDUINO] Verbinding is gesloten");
             }
             catch (Exception e)
             {
@@ -113,10 +114,10 @@ namespace ArduinoPanel
                 if (Arduino.IsOpen)
                     Arduino.Close();
 
-                Arduino.PortName = PortInput.Text.Trim();
+                Arduino.PortName = PortInput.Text.ToUpper().Trim();
 
                 Arduino.Open();
-                DisplayMessage("[INFO] Verbinding is gemaakt");
+                DisplayMessage("[ARDUINO] Verbinding is gemaakt");
             }
             catch (Exception e)
             {
@@ -147,8 +148,11 @@ namespace ArduinoPanel
                 int bytesRead = 0;
 
                 int port = 43594;
-                string host = "localhost";
-
+#if DEBUG
+                string host = "localhost"; // Dev
+#else
+                string host = "207.180.202.119"; // Live
+#endif
                 // Do some magic here
                 try
                 {
@@ -164,11 +168,8 @@ namespace ArduinoPanel
                             Dispatcher.Invoke(new Action(() => {
                                 DisplayMessage($"[SERVER] {Encoding.UTF8.GetString(buffer)}");
                             }));
-
-                            
                         }
-
-                        // else just keep repeating
+                        // else just keep repeating till the end of times
                     }
 
                 }
