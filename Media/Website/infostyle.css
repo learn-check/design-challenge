@@ -1,236 +1,262 @@
 *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body{
-    background: rgb(248, 248, 248);
+  background: rgb(248, 248, 248);
+}
+@media screen and (min-width: 800px){
+.gridContainer{
+  width: 800px;
+  margin: 0 auto;
+}
 }
 
 /*navsidebar*/
 
 .sidenav {
-    height: 100%; 
-    width: 0; 
-    position: fixed; 
-    z-index: 1; 
-    top: 0; 
-    right:  0;
-    background-color: rgb(95, 72, 91); 
-    overflow-x: hidden; 
-    padding-top: 60px; 
-    transition: 0.5s; 
-    font-family: 'Open Sans', sans-serif;
+  height: 100%; 
+  width: 0; 
+  position: fixed; 
+  z-index: 1; 
+  top: 0; 
+  right:  0;
+  background-color: rgb(95, 72, 91); 
+  overflow-x: hidden; 
+  padding-top: 60px; 
+  transition: 0.5s; 
+  font-family: 'Open Sans', sans-serif;
 }
 .sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: rgb(245, 245, 245);
-    display: flex;
-    transition: 0.3s;
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: rgb(245, 245, 245);
+  display: flex;
+  transition: 0.3s;
 }
 .sidenav a:hover {
-    color: rgb(24, 24, 24);
-    background-color: rgb(241, 241, 241);
+  color: rgb(24, 24, 24);
+  background-color: rgb(241, 241, 241);
 }
 #closebtn{
-    padding: 8px 8px 8px 8px;
+  padding: 8px 8px 8px 8px;
 }
 .sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
 }
 @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
 }
 
 /* burger*/
 
 .burger{
-    right: 10px;
-    position: fixed;
-    flex-direction: column;
-    
-    padding: 10px;
-    margin: 0px;    
+  right: 10px;
+  position: fixed;
+  flex-direction: column;
+  
+  padding: 10px;
+  margin: 0px;    
 }
 .burger-bar{
-    width: 35px;
-    height: 6px;
-    background-color: rgb(39, 39, 39);
-    border: solid 1px white;
-    margin: 4px 0;
+  width: 35px;
+  height: 6px;
+  background-color: rgb(39, 39, 39);
+  border: solid 1px white;
+  margin: 4px 0;
 }
 .burger:hover{
-    cursor: pointer;
+  cursor: pointer;
 }
 
 
 /*header*/
 
 .misc-info{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 100px;    
-    text-align: left;
-    margin: 10px;
-    background-color: rgb(215, 240, 252);
-    font-family: 'Open Sans', sans-serif;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 100px;    
+  text-align: left;
+  margin: 10px;
+  background-color: rgb(215, 240, 252);
+  font-family: 'Open Sans', sans-serif;
 }
 #box1{
-    place-self: center;
-      
+  place-self: center;
+    
 }
 
 
 #box1:hover{
-    place-self: center;
-    
+  place-self: center;
+  
 }
 #box2{
-    place-self: center;
-    justify-content: start;
-    color: rgb(17, 17, 17);
-    border-bottom: 2px transparent black;
-    text-transform: uppercase bold;
+  place-self: center;
+  justify-content: start;
+  color: rgb(17, 17, 17);
+  border-bottom: 2px transparent black;
+  text-transform: uppercase bold;
 }
 #box2 p{
-    text-align: left;
-    
+  text-align: left;
+  
 }
 
 #box2:hover{
-    place-self: center;
-    border-bottom: 2px solid black;
-    transition: ease-in 0.5s;
-    cursor: pointer;
+  place-self: center;
+  border-bottom: 2px solid black;
+  transition: ease-in 0.5s;
+  cursor: pointer;
 }
 #box3{
-    place-self: center;
-    color: rgb(17, 17, 17);
-    border-bottom: 2px transparent black;
-    text-decoration: none;
+  place-self: center;
+  color: rgb(17, 17, 17);
+  border-bottom: 2px transparent black;
+  text-decoration: none;
 }
 #box3:hover{
-    place-self: center;
-    border-bottom: 2px solid black;
-    transition: ease-in 0.5s;
-    cursor: pointer;
+  place-self: center;
+  border-bottom: 2px solid black;
+  transition: ease-in 0.5s;
+  cursor: pointer;
 }
 #box4{
-    place-self: center;
-    color: rgb(17, 17, 17);
-    border-bottom: 2px transparent black;
-    text-decoration: none;
+  place-self: center;
+  color: rgb(17, 17, 17);
+  border-bottom: 2px transparent black;
+  text-decoration: none;
 }
 #box4:hover{
-    place-self: center;
-    border-bottom: 2px solid black;
-    transition: ease-in 0.5s;
-    cursor: pointer;
+  place-self: center;
+  border-bottom: 2px solid black;
+  transition: ease-in 0.5s;
+  cursor: pointer;
 }
 
 /* Grid container */
 .gridContainer {
-    display: grid;
-    grid-gap: 10px;
-    background-color: #e6ebff;
-    padding: 10px;
-    height: 100vh;
-  }
+  display: grid;
+  grid-gap: 10px;
+  background-color: #e6ebff;
+  padding: 10px;
+  height: 100vh;
+}
+
+.headerTextTitle{
+  font-size: larger;
+}
+.headerText{
+  font-size: medium;
+}
+
+.gridItem {
   
-  .gridItem {
-    
-    text-align: center;
-    padding: 20px;
-    font-size: 30px;
-  }
+  text-align: center;
+  padding: 20px;
+  font-size: 30px;
+  border: solid grey 2px;
+}
+.gridItem:hover{
+  border: solid black 3px;
+}
+#item1 {
+  grid-column: 1;
+  grid-row: 1;
+  background-color: rgba(243, 221, 252, 0.8);
   
-  #item1 {
-    grid-column: 1 / span 4;
+}
+#item1 p{
+  justify-self: left;
+}
+
+#item2 {
+  grid-column: 1 / span 4;
+  grid-row: 2;
+  background-color: rgba(212, 223, 238, 0.8);
+}
+
+#item3 {
+  grid-column: 1 / span 2;
+  grid-row: 3;
+  background-color: rgba(199, 185, 204, 0.8);
+}
+#item4 {
+  grid-column: 3 / span 2;
+  grid-row: 3;
+  background-color: rgba(180, 174, 176, 0.8);
+}
+#item5{
+    grid-column: 2 / span 3;
     grid-row: 1;
-    background-color: rgba(238, 195, 255, 0.8);
-  }
-  
-  #item2 {
-    grid-column: 1 / span 4;
-    grid-row: 2;
-    background-color: rgba(183, 207, 238, 0.8);
-  }
-  
-  #item3 {
-    grid-column: 1 / span 2;
-    grid-row: 3;
-    background-color: rgba(137, 116, 145, 0.8);
-  }
-  #item4 {
-    grid-column: 3 / span 2;
-    grid-row: 3;
-    background-color: rgba(66, 36, 45, 0.8);
-  }
+    background-image: url("Images/Naamloos.jpg");
+    background-position: center;
+    height: 200px;
+}
 
 /* form*/
 input[type=text], select, textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    resize: vertical;
-  }
-  
-  label {
-    padding: 12px 12px 12px 0;
-    display: inline-block;
-  }
-  
-  input[type=submit] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    float: right;
-  }
-  
-  input[type=submit]:hover {
-    background-color: #45a049;
-  }
-  
-  .container {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
-  }
-  
-  .col-25 {
-    float: left;
-    width: 25%;
-    margin-top: 6px;
-  }
-  
-  .col-75 {
-    float: left;
-    width: 75%;
-    margin-top: 6px;
-  }
-  
-  /* Clear floats after the columns */
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 @media screen and (max-width: 600px) {
-    .col-25, .col-75, input[type=submit] {
-      width: 100%;
-      margin-top: 0;
-    }
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
   }
-  
+}

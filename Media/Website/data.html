@@ -9,119 +9,126 @@
     <link rel="stylesheet" href="datastyle.css">
 </head>
 
-<body>
-    <!-- sidenav -->
-    <section class="nav-bar-section">
-        <nav id="nav-bar">
-            <div class="burger" id="burger" onclick="openNav()"> 
-                <div class="burger-bar"></div>
-                <div class="burger-bar"></div>
-                <div class="burger-bar"></div>
-            </div>
-            <div id="mySidenav" class="sidenav">
-                <a id="closebtn" href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                <a href="index.html">HOME</a>
-                <a href="info.html">information</a>
-                <a href="data.html">Data Analyse</a>                
-            </div>
-        </nav>
-    </section>
+<body class="Body">
+  <!-- sidenav -->
+  <section class="nav-bar-section">
+      <nav id="nav-bar">
+          <div class="burger" id="burger" onclick="openNav()"> 
+              <div class="burger-bar"></div>
+              <div class="burger-bar"></div>
+              <div class="burger-bar"></div>
+          </div>
+          <div id="mySidenav" class="sidenav">
+              <a id="closebtn" href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+              <a href="index.html">HOME</a>
+              <a href="info.html">informatien</a>
+              <a href="data.html">Data Visualisatie</a>                
+          </div>
+      </nav>
+  </section>
 
-    <!-- misc information in grid. Dit zou ik dan  via een API willen bemachtigen.-->
-    <div class="misc-info">
-        <div id="box1">
-            <a href="index.html"><img src="Images/Logo monorail.png" ></a>
-            
-        </div>
-        <div id="box2">
-          <p>Monorail</p>
-        </div>
-        <div id="box3">
-            <p>Zoeken</p>
-        </div>
-        <div id="box4">            
-            <p>Hulp</p>
-            
-        </div>
-    </div>
-   
-    <!-- main page-->
-    <section class="main-grid-section">
-        <div class="gridContainer">
-            <div class="gridItem" id="item1">
-                <p>Deze design challenge betreft het duurzame ontwikkelingsdoelstelling 11: Maak steden en menselijke nederzettingen inclusief, veilig, veerkrachtig en duurzaam. Wat een veel voorkomend probleem is in grote steden is overbelasting van het infrastructuur. Dit leidt niet alleen tot file in het verkeer, maar ook tot air pollution, gevaarlijke situaties in het verkeer en slechte toegankelijkheid tot het stedelijk gebied. Dit staat tegenover de duurzame ontwikkelingsdoelstelling die wij hebben gekozen. Met een magnetische monorail willen wij de druk op het verkeer van een drukke stad verminderen. Een van de voordelen van een magnetische monorail zijn: </p>
-            </div>
-            <div class="gridItem" id="item2">
-                <div class="formContainer">
-                    <form action="#">
-                    <div class="row">
-                      <div class="col-25">
-                        <label for="fname">Voornaam</label>
-                      </div>
-                      <div class="col-75">
-                        <input type="text" id="fname" name="firstname" placeholder="Uw naam..">
-                      </div>
+  <!-- misc information in grid. Dit zou ik dan  via een API willen bemachtigen.-->
+  <div class="misc-info">
+      <div id="box1">
+          <a href="index.html"><img src="Images/Logo monorail.png" ></a>
+          
+      </div>
+      <div id="box2">        
+        <a href="index.html">
+          HOME
+        </a>
+      </div>
+      <div id="box3">
+          <a href="info.html">Informatie</a>
+      </div>
+      <div id="box4">            
+          <a href="data.html">Data analyse</a>
+          
+      </div>
+  </div>
+ 
+  <!-- main page-->
+  <section class="main-grid-section">
+      <div class="gridContainer">
+          <div class="gridItem" id="item1">
+              <p class="headerTextTitle ">Monorail </p>
+              <p class="headerText">Het vervoer van de toekomst.</p>
+          </div>
+          <div class="gridItem" id="item2">
+            <p>Kies uw product</p>
+              <div class="formContainer">
+                  <form action="#">
+                  <div class="row">
+                    <div class="col-25">
+                      <label for="fname">Voornaam</label>
                     </div>
-                    <div class="row">
-                      <div class="col-25">
-                        <label for="lname">Achternaam</label>
-                      </div>
-                      <div class="col-75">
-                        <input type="text" id="lname" name="lastname" placeholder="Uw Achternaam..">
-                      </div>
+                    <div class="col-75">
+                      <input type="text" id="fname" name="firstname" placeholder="Uw naam..">
                     </div>
-                    <div class="row">
-                      <div class="col-25">
-                        <label for="country">type kaartje</label>
-                      </div>
-                      <div class="col-75">
-                        <select id="country" name="country">
-                          <option value="australia">Abonnoment</option>
-                          <option value="canada">Retour kaartje</option>
-                          <option value="usa">Dag kaartje</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-25">
-                        <label for="subject">Afstand</label>
-                      </div>
-                      <div class="col-75">
-                        <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <input type="submit" value="Submit">
-                    </div>
-                    </form>
                   </div>
-            </div>
-            <div class="gridItem" id="item3">
-                <p>Kies uw beginpunt</p>
-                <div class="col-75">
-                    <select id="beginpunt" name="beginpunt">
-                      <option value="1">locatie 1</option>
-                      <option value="2">locatie 2</option>
-                      <option value="3">locatie 3</option>
-                    </select>
+                  <div class="row">
+                    <div class="col-25">
+                      <label for="lname">Achternaam</label>
+                    </div>
+                    <div class="col-75">
+                      <input type="text" id="lname" name="lastname" placeholder="Uw Achternaam..">
+                    </div>
                   </div>
-            </div>
-            <div class="gridItem" id="item4">
-                <p>Kies uw eindpunt</p>         
+                  <div class="row">
+                    <div class="col-25">
+                      <label for="country">type kaartje</label>
+                    </div>
+                    <div class="col-75">
+                      <select id="country" name="country">
+                        <option value="australia">Abonnoment</option>
+                        <option value="canada">Retour kaartje</option>
+                        <option value="usa">Dag kaartje</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-25">
+                      <label for="subject">Afstand</label>
+                    </div>
+                    <div class="col-75">
+                      <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <input type="submit" value="Submit">
+                  </div>
+                  </form>
+                </div>
+          </div>
+          <div class="gridItem" id="item3">
+              <p>Kies uw beginpunt</p>
+              <div class="col-75">
+                  <select id="beginpunt" name="beginpunt">
+                    <option value="1">locatie 1</option>
+                    <option value="2">locatie 2</option>
+                    <option value="3">locatie 3</option>
+                  </select>
+                </div>
+          </div>
+          <div class="gridItem" id="item4">
+              <p>Kies uw eindpunt</p>         
+          
+              <div class="col-75">
+                      <select id="eindpunt" name="eindpunt">
+                        <option value="1">locatie 1</option>
+                        <option value="2">locatie 2</option>
+                        <option value="3">locatie 3</option>
+                      </select>
+               </div>
+              
+          </div>
+          <div class="gridItem" id="item5">
             
-                <div class="col-75">
-                        <select id="eindpunt" name="eindpunt">
-                          <option value="1">locatie 1</option>
-                          <option value="2">locatie 2</option>
-                          <option value="3">locatie 3</option>
-                        </select>
-                 </div>
-                
-            </div>
-        </div>
-    </section>
-    
+          </div>
+      </div>
+  </section>
+  
 
-    <script src="nav.js"></script>
+  <script src="nav.js"></script>
 </body>
 </html>
