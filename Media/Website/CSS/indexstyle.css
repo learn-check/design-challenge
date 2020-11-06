@@ -88,6 +88,13 @@ body{
     margin: 10px;
     background-color: rgb(215, 240, 252);
     font-family: 'Open Sans', sans-serif;
+    
+}
+.misc-info a{
+  text-decoration: none;
+  color: black;
+  font-family: Verdana, 'Open Sans', sans-serif;
+  font-weight: bold;
 }
 #box1{
     place-self: center;
@@ -187,23 +194,24 @@ body{
   #item3 {
     grid-column: 1 / span 2;
     grid-row: 3;
-    background-color: rgba(199, 185, 204, 0.8);
+    background-color: #ffc3928c;
   }
   #item4 {
     grid-column: 3 / span 2;
     grid-row: 3;
-    background-color: rgba(180, 174, 176, 0.8);
+    background-color: rgba(183, 255, 221, 0.664);
   }
 #item5{
       grid-column: 2 / span 3;
       grid-row: 1;
-      background-image: url("Images/Naamloos.jpg");
+      background-image: url("../Images/Naamloos.jpg");
       background-position: center;
       height: 200px;
 }
 #item6{
   grid-column: 1 / span 4;
   grid-row: 4;
+  
 }
 
 /* form*/

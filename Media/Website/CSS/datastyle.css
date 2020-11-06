@@ -89,6 +89,12 @@ body{
   background-color: rgb(215, 240, 252);
   font-family: 'Open Sans', sans-serif;
 }
+.misc-info a{
+  text-decoration: none;
+  color: black;
+  font-family: Verdana, 'Open Sans', sans-serif;
+  font-weight: bold;
+}
 #box1{
   place-self: center;
     
@@ -171,7 +177,7 @@ body{
 #item1 {
   grid-column: 1;
   grid-row: 1;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(243, 221, 252, 0.8);
   
 }
 #item1 p{
@@ -197,10 +203,16 @@ body{
 #item5{
     grid-column: 2 / span 3;
     grid-row: 1;
-    background-image: url("Images/Naamloos.jpg");
+    background-image: url("../Images/Naamloos.jpg");
     background-position: center;
     height: 200px;
 }
+#item6{
+  grid-column: 1 / span 4;
+  grid-row: 4;
+  
+}
+
 
 /* form*/
 input[type=text], select, textarea {
