@@ -210,8 +210,12 @@ body{
 }
 #item6{
   grid-column: 1 / span 4;
-  grid-row: 4;
+  grid-row: 5;
   
+}
+#item7{
+  grid-column: 1 / span 4;
+  grid-row: 4;
 }
 
 /* form*/

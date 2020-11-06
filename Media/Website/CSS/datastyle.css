@@ -187,7 +187,11 @@ body{
 #item2 {
   grid-column: 1 / span 4;
   grid-row: 2;
-  background-color: rgba(212, 223, 238, 0.8);
+  background-color: rgba(255, 255, 255);
+  
+}
+#item2 img{
+    width: 600px;
 }
 
 #item3 {
