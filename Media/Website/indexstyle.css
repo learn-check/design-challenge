@@ -148,7 +148,7 @@ body{
     grid-gap: 10px;
     background-color: #e6ebff;
     padding: 10px;
-    height: 100vh;
+    
   }
 
   .headerTextTitle{
@@ -200,6 +200,10 @@ body{
       background-image: url("Images/Naamloos.jpg");
       background-position: center;
       height: 200px;
+}
+#item6{
+  grid-column: 1 / span 4;
+  grid-row: 4;
 }
 
 /* form*/
