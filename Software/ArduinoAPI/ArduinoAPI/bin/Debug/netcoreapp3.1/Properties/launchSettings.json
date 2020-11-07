@@ -12,7 +12,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": false,
-      "launchUrl": "/api/arduino/",
+      "launchUrl": "api/arduino/status",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

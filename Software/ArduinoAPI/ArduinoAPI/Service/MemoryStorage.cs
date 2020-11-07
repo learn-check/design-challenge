@@ -1,15 +1,17 @@
-﻿using ArduinoAPI.Data;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
+using io = System.IO.File;
 
 namespace ArduinoAPI.Service
 {
     public class MemoryStorage : IMemoryStorage
     {
-        private readonly Dictionary<string, CustomerInfo> Items;
+        private readonly Dictionary<string, object> Items;
 
         public MemoryStorage()
         {
-            Items = new Dictionary<string, CustomerInfo>();
+            Items = new Dictionary<string, object>();
         }
 
         public bool DeleteItem(string name)
@@ -17,16 +19,19 @@ namespace ArduinoAPI.Service
             return Items.Remove(name);
         }
 
-        public bool AddItem(string name, CustomerInfo value)
+        public bool AddItem(string name, object value)
         {
             if (Items.ContainsKey(name) || value == null) return false;
 
             return Items.TryAdd(name, value);
         }
 
-        public CustomerInfo GetItem(string name)
+        public T GetItem<T>(string name)
         {
-            return Items[name];
+            if (Items.ContainsKey(name))
+                return (T)Items[name];
+            else
+                return default;
         }
     }
 }

@@ -157,6 +157,7 @@ namespace ArduinoPanel
                 try
                 {
                     await Client.ConnectAsync(host, port);
+
                     NetworkStream networkStream = Client.GetStream();
 
                     while (!StopClient)
