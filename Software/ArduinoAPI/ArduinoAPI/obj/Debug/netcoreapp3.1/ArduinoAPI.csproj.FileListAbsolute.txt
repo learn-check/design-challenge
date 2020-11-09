@@ -17,4 +17,3 @@ C:\Users\boris\OneDrive\Bureaublad\Project\design-challenge\Software\ArduinoAPI\
 C:\Users\boris\OneDrive\Bureaublad\Project\design-challenge\Software\ArduinoAPI\ArduinoAPI\obj\Debug\netcoreapp3.1\ArduinoAPI.dll
 C:\Users\boris\OneDrive\Bureaublad\Project\design-challenge\Software\ArduinoAPI\ArduinoAPI\obj\Debug\netcoreapp3.1\ArduinoAPI.pdb
 C:\Users\boris\OneDrive\Bureaublad\Project\design-challenge\Software\ArduinoAPI\ArduinoAPI\obj\Debug\netcoreapp3.1\ArduinoAPI.genruntimeconfig.cache
-C:\Users\boris\OneDrive\Bureaublad\Project\design-challenge\Software\ArduinoAPI\ArduinoAPI\obj\Debug\netcoreapp3.1\ArduinoAPI.csprojAssemblyReference.cache
