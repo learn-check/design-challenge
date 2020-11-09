@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--links and other misc-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monorail</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/homestyle.css">
+</head>
+
+<body class="Body">
+    <!-- sidenav -->
+    <section class="nav-bar-section">
+        <nav id="nav-bar">
+            <div class="burger" id="burger" onclick="openNav()"> 
+              <p>Menu</p>
+                <div class="burger-bar"></div>
+                <div class="burger-bar"></div>
+                <div class="burger-bar"></div>
+            </div>
+            <div id="mySidenav" class="sidenav">
+                <a id="closebtn" href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="home.html">HOME</a>
+                <a href="info.html">informatie</a>
+                <a href="data.html">Data Visualisatie</a>                
+            </div>
+        </nav>
+    </section>
+
+    <!-- misc information in grid. Dit zou ik dan  via een API willen bemachtigen.-->
+    <div class="misc-info">
+        <div id="box1">
+            <a href="index.html"><img src="Images/Logo monorail.png" ></a>
+            
+        </div>
+        <div id="box2">        
+          <a href="home.html">
+            HOME
+          </a>
+        </div>
+        <div id="box3">
+            <a href="info.html">Informatie</a>
+        </div>
+        <div id="box4">            
+            <a href="data.html">Data analyse</a>
+            
+        </div>
+    </div>
+   
+    <!-- main page-->
+    <section class="main-grid-section">
+        <div class="gridContainer">
+            <div class="gridItem" id="item1">
+                <p class="headerTextTitle ">Monorail </p>
+                <p class="headerText">Het vervoer van de toekomst.</p>
+            </div>
+            <div class="gridItem" id="item2">
+              <p>Kies uw product</p>
+                <div class="formContainer">
+                    <form method="post" action="#">
+                    <div class="row">
+                      <div class="col-25">
+                        <label for="fname">Voornaam</label>
+                      </div>
+                      <div class="col-75">
+                        <input type="text" id="fname" name="Name" placeholder="Uw naam..">
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-25">
+                        <label for="lname">Achternaam</label>
+                      </div>
+                      <div class="col-75">
+                        <input type="text" id="lname" name="Surname" placeholder="Uw Achternaam..">
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-25">
+                        <label for="country">type kaartje</label>
+                      </div>
+                      <div class="col-75">
+                        <select id="country" name="CardType">
+                          <option value="ABBO">Abonnoment</option>
+                          <option value="RETOUR">Retour kaartje</option>
+                          <option value="DAG">Dag kaartje</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="row">
+                      
+                      
+                    </div>
+                    
+            
+                  </div>
+            </div>
+            <div class="gridItem" id="item3">
+                <p>Kies uw beginpunt</p>
+                <div class="col-75">
+                    <select id="beginpunt" name="beginpunt">
+                      <option value="1">locatie 1</option>
+                      <option value="2">locatie 2</option>
+                      <option value="3">locatie 3</option>
+                    </select>
+                  </div>
+            </div>
+            <div class="gridItem" id="item4">
+                <p>Kies uw eindpunt</p>         
+            
+                <div class="col-75">
+                        <select id="eindpunt" name="eindpunt">
+                          <option value="1">locatie 1</option>
+                          <option value="2">locatie 2</option>
+                          <option value="3">locatie 3</option>
+                        </select>
+                 </div>
+                
+            </div>
+            <div class="gridItem" id="item5">
+              
+            </div>
+            <div class="gridItem" id="item7">
+              <div class="row">
+                <p> Klik hier om u beslissing vast te stellen:</p>
+                <input type="submit" value="Submit">
+              </div>
+            </form>
+
+
+            </div>
+            <div class="gridItem" id="item6">
+              <p class="headerTextTitle">Contact US</p>
+              <p class="headerText">Telefoon: 06 ***********</p>
+              <p class="headerText">Email: Jemoeder@gmail.com</p>
+              <p class="headerText">Locatie: Rachelsmolen R10</p>
+              
+            </div>
+        </div>
+    </section>
+    
+
+    <script src="JS/nav.js"></script>
+</body>
+</html>
