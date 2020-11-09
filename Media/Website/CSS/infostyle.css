@@ -328,3 +328,15 @@ input[type=submit]:hover {
   height: 100%;
   transform: translateY(100%);
 }
+@media screen and (max-width: 800px){
+  
+  #box2 a{
+    display: none;
+  }
+  #box3 a{
+    display: none;
+  }
+  #box4 a{
+    display: none;
+  }
+}

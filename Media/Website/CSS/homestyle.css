@@ -13,6 +13,19 @@ body{
     width: 800px;
     margin: 0 auto;
   }
+  
+}
+@media screen and (max-width: 800px){
+  
+  #box2 a{
+    display: none;
+  }
+  #box3 a{
+    display: none;
+  }
+  #box4 a{
+    display: none;
+  }
 }
 
 /*navsidebar*/
@@ -55,6 +68,7 @@ body{
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
+    
 }
 
 /* burger*/
@@ -283,6 +297,7 @@ input[type=text], select, textarea {
       width: 100%;
       margin-top: 0;
     }
+  
   }
   .bigCircle{
     position: absolute;
