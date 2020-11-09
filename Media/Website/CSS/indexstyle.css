@@ -83,7 +83,22 @@ nav{
     cursor: pointer;
     font-family: 'Poppins', sans-serif;
     font-size: 16px;
+    
     box-shadow: 3px 3px 3px 3px lightgrey;
+}
+.ctaSelect a {
+    text-decoration: none;
+    color: #c36cbb;
+}
+.ctaSelect:hover{
+    border: #494964 solid 1px;
+}
+.ctaAdd a {
+    color: white;
+    text-decoration: none;
+}
+.ctaAdd:hover{
+    border: #494964 solid 1px;
 }
 .ctaAdd{
     background: #c36cbb;
@@ -161,6 +176,9 @@ nav{
    }
    .midCircle{
     height: 80%;
+   }
+   .navLinks{
+       flex-direction: column;
    }
    
 }
