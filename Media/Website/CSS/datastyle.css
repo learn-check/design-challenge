@@ -5,7 +5,8 @@
 }
 
 body{
-  background: rgb(248, 248, 248);
+  background: rgb(255, 255, 255);
+  font-family: 'Poppins', sans-serif;
 }
 @media screen and (min-width: 800px){
 .gridContainer{
@@ -84,16 +85,17 @@ body{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 100px;    
-  text-align: left;
-  margin: 10px;
-  background-color: rgb(215, 240, 252);
-  font-family: 'Open Sans', sans-serif;
+  text-align: left;      
+  background-color: #e4acde;
+  
+  font-family: 'Poppins', sans-serif;
+  
 }
 .misc-info a{
-  text-decoration: none;
-  color: black;
-  font-family: Verdana, 'Open Sans', sans-serif;
-  font-weight: bold;
+text-decoration: none;
+color: black;
+font-family: 'Poppins', sans-serif;
+font-weight: bold;
 }
 #box1{
   place-self: center;
@@ -140,6 +142,7 @@ body{
   color: rgb(17, 17, 17);
   border-bottom: 2px transparent black;
   text-decoration: none;
+  margin-right: 60px;
 }
 #box4:hover{
   place-self: center;
@@ -149,130 +152,140 @@ body{
 }
 
 /* Grid container */
-.gridContainer {
-  display: grid;
-  grid-gap: 10px;
-  background-color: #e6ebff;
-  padding: 10px;
-  
-}
 
-.headerTextTitle{
-  font-size: larger;
+.mainGridSection{
+  margin: auto;
+  width: 90%;
+  margin-top: 10px;
 }
-.headerText{
-  font-size: medium;
+.gridContainer{
+ display: grid;
+ grid-gap: 10px;
+ grid-template-columns: 1fr ;
+ grid-template-rows: 4fr 1fr 3fr 1fr;
+ height: 100vh;
+ margin: auto;
 }
-
-.gridItem {
-  
+.gridItem{
   text-align: center;
-  padding: 20px;
-  font-size: 30px;
-  border: solid grey 2px;
+  box-shadow: 3px 3px 3px 3px gray;
 }
-.gridItem:hover{
-  border: solid black 3px;
+#item1{
+  background: white;
+ border: 1px solid black;
+
 }
-#item1 {
-  grid-column: 1;
-  grid-row: 1;
-  background-color: rgba(243, 221, 252, 0.8);
+#item1 img{
+  width: 90%;
   
 }
-#item1 p{
-  justify-self: left;
-}
-
-#item2 {
-  grid-column: 1 / span 4;
-  grid-row: 2;
-  background-color: rgba(255, 255, 255);
+#item2{
+ 
   
 }
-#item2 img{
-    width: 600px;
+#item3{
+  background: white;
+  border: 1px solid black;
+ 
+  
+}
+#item3 img{
+  width: 90%;
+ 
+  
+}
+#item4{
+ 
+  
 }
 
-#item3 {
-  grid-column: 1 / span 2;
-  grid-row: 3;
-  background-color: rgba(199, 185, 204, 0.8);
-}
-#item4 {
-  grid-column: 3 / span 2;
-  grid-row: 3;
-  background-color: rgba(180, 174, 176, 0.8);
-}
 #item5{
-    grid-column: 2 / span 3;
-    grid-row: 1;
-    background-image: url("../Images/Naamloos.jpg");
-    background-position: center;
-    height: 200px;
+  background: white;
+  border: 1px solid black;
+ 
+  
 }
-#item6{
-  grid-column: 1 / span 4;
-  grid-row: 4;
+#item5 img{
+  width: 90%;
+ 
+  
+}#item7{
+  background: white;
+  border: 1px solid black;
+ 
+  
+}
+#item7 img{
+  width: 90%;
+ 
+  
+}#item9{
+  background: white;
+  border: 1px solid black;
+ 
+  
+}
+#item9 img{
+  width: 90%;
+ 
   
 }
 
 
-/* form*/
-input[type=text], select, textarea {
+
+.bigCircle{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: -1;
+  opacity: 0.7;
+  height: 80%;
+}
+.midCircle{
+  position: absolute;
+  top: 30%;
+  right: 30%;
+  z-index: -1;
+  opacity: 0.8;
+  height: 60%;    
+}
+.smallCircle{
+  position: absolute;
+  bottom: 0%;
+  left: 20%;
+  z-index: -1;
+  opacity: 0.9;
+  width: 20vw; 
+}
+.intro {
+  background: black;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  resize: vertical;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
-label {
-  padding: 12px 12px 12px 0;
-  display: inline-block;
+.slider {
+  background: #c36cbb;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateY(100%);
 }
-
-input[type=submit] {
-  background-color: #4CAF50;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  float: right;
-}
-
-input[type=submit]:hover {
-  background-color: #45a049;
-}
-
-.container {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-}
-
-.col-25 {
-  float: left;
-  width: 25%;
-  margin-top: 6px;
-}
-
-.col-75 {
-  float: left;
-  width: 75%;
-  margin-top: 6px;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-@media screen and (max-width: 600px) {
-  .col-25, .col-75, input[type=submit] {
-    width: 100%;
-    margin-top: 0;
+@media screen and (max-width: 800px){
+  
+  #box2 a{
+    display: none;
+  }
+  #box3 a{
+    display: none;
+  }
+  #box4 a{
+    display: none;
   }
 }
