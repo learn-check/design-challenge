@@ -19,4 +19,30 @@ function openNav() {
       return false;
     }
   }
-  // dit is een jav functie die ik heb geschreven zodat  de klant er zeker van is dat hij de goede reis heeft gekozen.
+  // dit is een jav functie die ik heb geschreven zodat 
+  // de klant er zeker van is dat hij de goede reis heeft gekozen.
+  function contactAr(){
+    var myWindow = window.open("mailto:404368@student.fontys.nl");
+    
+    
+  }
+  function contactRu(){
+    var myWindow = window.open("mailto:462404@student.fontys.nl");
+    
+    
+  }
+  function contactRo(){
+    var myWindow = window.open("mailto:367898@student.fontys.nl");
+    
+    
+  }
+  function contactBo(){
+    var myWindow = window.open("mailto:463253@student.fontys.nl");
+    
+    
+  }
+  function contactMa(){
+    var myWindow = window.open("mailto:455150@student.fontys.nl");
+    
+    
+  }

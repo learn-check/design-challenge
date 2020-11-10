@@ -153,48 +153,152 @@
     cursor: pointer;
   }
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   /*main body based in a grin format.*/
+
+.aboutContainer{
+  display: grid;
+  width: 80%;
   
-  .mainGridSection{
-    margin: auto;
-    width: 90%;
-    margin-top: 10px;
-  }
-  .gridContainer{
-   display: grid;
-   grid-gap: 10px;
-   grid-template-columns: 1fr ;
-   grid-template-rows: 4fr 1fr 3fr 1fr;
-   height: 100vh;
-   margin: auto;
-  }
-  .gridItem{
-    text-align: center;
-    box-shadow: 3px 3px 3px 3px gray;
-  }
-  #item1{
-   background: white;
-   border: 1px solid black;
+  
+  margin: auto;
+  
+
+  
+  grid-gap: 10px;
+}
+@media screen and (max-height: 800px) {
+  .aboutContainer{
+    display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   
   }
-  #item2{
-   
-    
-  }
-  #item3{
-   
-    
-  }
-  #item4{
-   
-    
-  }
-  .gridItem:hover{
-    border: solid grey 3px;
-    box-shadow: 3px 3px 3px 3px darkgrey;
+}
+
+
+.team{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.aboutDiv{
+  display: grid;
   
-  }
+}
+
+#art{
+  background: blue;
+}
+.foto img{
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
+}
+
+
+#ruben{
+  background: red;
+
+}
+#mathijs{
+  background: green;
+
+}
+#robbie{
+  background: yellow;
+
+}
+#boris{
+  background: aqua;
+
+}
+.column {
+  float: left;
+  width: 20%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+.column img{
+  max-height: 300px;
+  object-fit: cover;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: 8px;
+}
+
+.about-section {
+  padding: 50px;
+  text-align: center;
+  background-color: #474e5d;
+  color: white;
+}
+
+.container {
+  padding: 0 16px;
+}
+
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title {
+  color: grey;
+  max-width: 20%;
+}
+
+.button {
+  background: #c36cbb;
+  width: 100%;
+  height: 50px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  border: none;
+  color: white;
+  margin: 30px 0px 0px 0px;
   
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+@media screen and (max-width: 800px) {
+  .column {
+    width: 100%;
+    display: block;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
   .bigCircle{
     position: absolute;
     top: 0px;
