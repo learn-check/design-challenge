@@ -30,6 +30,19 @@ namespace ArduinoAPI.Controllers
 
         // TODO update travellog
         // Need arduino working first tho....
+        public void UpdateTravel()
+        {
+            
+        }
+
+        public object GetTravelLog(string id)
+        {
+            var log = memoryStorage.GetItem<TravelInfo>(id);
+
+            if (log == null) return "";
+
+            return log.ToString();
+        }
 
         [HttpGet("status")]
         [Produces("text/html")]
@@ -76,7 +89,7 @@ namespace ArduinoAPI.Controllers
                             <p>Start: <b>{info.StartLocation}</b></p>
                             <p>Einde: <b>{info.EndLocation}</b></p>
                             <p>Uw kaartbewijs is <b>{"#" + id}</b></p>
-                            <a class='btn btn-success btn-lg' href='https://monorail.codes/' role='button'>Terug naar de home pagina</a>
+                            <a class='btn btn-lg' style="" href='https://monorail.codes/' role='button'>Terug naar de home pagina</a>
                           </div>
                     </div>
                 </body>
