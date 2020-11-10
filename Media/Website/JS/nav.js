@@ -9,13 +9,13 @@ function openNav() {
  
 
   function areUSure(){
-    var r = confirm("weet je het zeker dat je deze reis wilt?");
+    var r = confirm("Weet u het zeker dat je deze reis wilt?");
     
     if (r == true){
       document.getElementById("button").action;
     }
     else{
-      alert("dat is jamer tot de volgende keer")
+      alert("Dat is jammer tot de volgende keer.")
       return false;
     }
   }
