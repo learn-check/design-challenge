@@ -198,11 +198,7 @@ font-weight: bold;
  
   
 }
-.gridItem:hover{
-  border: solid grey 3px;
-  box-shadow: 3px 3px 3px 3px darkgrey;
 
-}
 #item5{
   background: white;
   border: 1px solid black;
