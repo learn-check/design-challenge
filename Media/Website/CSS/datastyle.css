@@ -152,138 +152,91 @@ font-weight: bold;
 }
 
 /* Grid container */
-.gridContainer {
-  display: grid;
-  grid-gap: 10px;
-  
-  padding: 10px;
-  
-}
 
-.headerTextTitle{
-  font-size: larger;
+.mainGridSection{
+  margin: auto;
+  width: 90%;
+  margin-top: 10px;
 }
-.headerText{
-  font-size: medium;
+.gridContainer{
+ display: grid;
+ grid-gap: 10px;
+ grid-template-columns: 1fr ;
+ grid-template-rows: 4fr 1fr 3fr 1fr;
+ height: 100vh;
+ margin: auto;
 }
-
-.gridItem {
-  
+.gridItem{
   text-align: center;
-  padding: 20px;
-  font-size: 30px;
-  
-  box-shadow: 3px 3px 3px 3px lightgrey;
+  box-shadow: 3px 3px 3px 3px gray;
+}
+#item1{
+  background: white;
+ border: 1px solid black;
 
+}
+#item1 img{
+  width: 90%;
+  
+}
+#item2{
+ 
+  
+}
+#item3{
+  background: white;
+  border: 1px solid black;
+ 
+  
+}
+#item3 img{
+  width: 90%;
+ 
+  
+}
+#item4{
+ 
+  
 }
 .gridItem:hover{
   border: solid grey 3px;
   box-shadow: 3px 3px 3px 3px darkgrey;
 
 }
-#item1 {
-  grid-column: 1;
-  grid-row: 1;   
-  border: grey solid 1px; 
-}
-#item1 p{
-  justify-self: left;
-}
-
-#item2 {
-  grid-column: 1 / span 4;
-  grid-row: 2;
-  border-style: inset;
-}
-
-#item3 {
-  grid-column: 1 / span 2;
-  grid-row: 3;
+#item5{
+  background: white;
+  border: 1px solid black;
+ 
   
 }
-#item4 {
-  grid-column: 3 / span 2;
-  grid-row: 3;
+#item5 img{
+  width: 90%;
+ 
+  
+}#item7{
+  background: white;
+  border: 1px solid black;
+ 
+  
 }
-#item5{
-    grid-column: 2 / span 3;
-    grid-row: 1;
-    background-image: url("../Images/Naamloos.jpg");
-    background-position: center;
-    height: 200px;
+#item7 img{
+  width: 90%;
+ 
+  
+}#item9{
+  background: white;
+  border: 1px solid black;
+ 
+  
 }
-#item6{
-grid-column: 1 / span 4;
-grid-row: 5;
-
-}
-#item7{
-grid-column: 1 / span 4;
-grid-row: 4;
-}
-
-/* form*/
-input[type=text], select, textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  resize: vertical;
+#item9 img{
+  width: 90%;
+ 
+  
 }
 
-label {
-  padding: 12px 12px 12px 0;
-  display: inline-block;
-  font-size: 18px;
-}
 
-input[type=submit] {
-  background: #c36cbb;
-  width: 150px;
-  height: 50px;
-  cursor: pointer;
-  font-family: 'Poppins', sans-serif;
-  font-size: 16px;
-  border: none;
-  color: white;
-  margin: 30px 0px 0px 0px;
-  box-shadow: 3px 3px 3px 3px lightgrey;
-}
 
-input[type=submit]:hover {
-  background-color: #e4acde;
-}
-
-.container {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-}
-
-.col-25 {
-  float: left;
-  width: 25%;
-  margin-top: 6px;
-}
-
-.col-75 {
-  float: left;
-  width: 75%;
-  margin-top: 6px;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-@media screen and (max-width: 600px) {
-  .col-25, .col-75, input[type=submit] {
-    width: 100%;
-    margin-top: 0;
-  }
-}
 .bigCircle{
   position: absolute;
   top: 0px;
