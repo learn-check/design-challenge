@@ -51,7 +51,7 @@ namespace ArduinoAPI.Controllers
                             <p class='lead'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus malesuada ante non mauris volutpat dignissim id et est. Quisque vitae commodo erat, id mollis nisl.</p>
                             <hr class='my-4'>
                             <p>Uw kaartbewijs is {"#"+id}</p>
-                            <a class='btn btn-success btn-lg' href='/' role='button'>Terug naar de home pagina</a>
+                            <a class='btn btn-success btn-lg' href='https://monorail.codes/index' role='button'>Terug naar de home pagina</a>
                           </div>
                     </div>
                 </body>
@@ -62,6 +62,8 @@ namespace ArduinoAPI.Controllers
             };
         }
 
+
+        [NonAction]
         private string GenID(int min = 0, int max = 16)
         {
             return Guid.NewGuid().ToString().Substring(min, max).Replace("-", "");
