@@ -33,15 +33,85 @@ nav{
     color: #5f5f79;
     text-decoration: none;
 }
+@media screen and (max-width: 800px){
+  
+    .navLink{
+      display: none;
+    }
+    .about{
+        display: none;
+    }
+}
 .navLinks a:hover{
     border-bottom: #494964 solid 2px ;
 
 }
+/*navsidebar*/
 
+.sidenav {
+    height: 100%; 
+    width: 0; 
+    position: fixed; 
+    z-index: 1; 
+    top: 0; 
+    right:  0;
+    background-color: rgb(95, 72, 91); 
+    overflow-x: hidden; 
+    padding-top: 60px; 
+    transition: 0.5s; 
+    font-family: 'Open Sans', sans-serif;
+  }
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: rgb(245, 245, 245);
+    display: flex;
+    transition: 0.3s;
+  }
+  .sidenav a:hover {
+    color: rgb(24, 24, 24);
+    background-color: rgb(241, 241, 241);
+  }
+  #closebtn{
+    padding: 8px 8px 8px 8px;
+  }
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+  
+  /* burger*/
+  
+  .burger{
+    right: 10px;
+    position: fixed;
+    flex-direction: column;
+    
+    padding: 10px;
+    margin: 0px;    
+  }
+  .burger-bar{
+    width: 35px;
+    height: 6px;
+    background-color: rgb(39, 39, 39);
+    border: solid 1px white;
+    margin: 4px 0;
+  }
+  .burger:hover{
+    cursor: pointer;
+  }
 .about{
     justify-content: flex-end;
     flex: 1;
-    margin-right: 10px;
+    margin-right: 20px;
     
 }
 .about a{
