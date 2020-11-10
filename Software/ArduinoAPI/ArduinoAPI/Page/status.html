@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Status voor [name]</title>
+</head>
+<body>
+    <div>
+        <h1>[full_name]</h1>
+        <p>U bent nu bij peron <p id="train_station">---</p> </p>
+    </div>
+</body>
+</html>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var id = [id];
+        var url = 'https://localhost:44352/api/boeking/reis/locatie/'+id;
+
+        setInterval(function () {
+            
+            document.getElementById("train_station").innerHTML = "Bijwerken....";
+
+            const Http = new XMLHttpRequest();
+            Http.open("GET", url);
+            Http.send();
+
+            Http.onreadystatechange = (e) => {
+                var rs = Http.responseText;
+
+                document.getElementById("train_station").innerHTML = rs;
+
+                console.log(rs)
+            }
+            }, 3000);
+    });
+</script>

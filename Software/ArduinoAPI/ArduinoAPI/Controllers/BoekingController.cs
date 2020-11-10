@@ -3,6 +3,9 @@ using ArduinoAPI.Service;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Net;
+using System.Text;
+using System.Threading.Tasks;
+using io = System.IO;
 
 namespace ArduinoAPI.Controllers
 {
@@ -17,6 +20,32 @@ namespace ArduinoAPI.Controllers
         public BoekingController(IMemoryStorage storage)
         {
             memoryStorage = storage;
+
+#if DEBUG
+            memoryStorage.AddItem("123", new CustomerInfo {
+                Name = "Boris",
+                Surname = "Mulder",
+                CardType = "Retour",
+                EndLocation = 2,
+                StartLocation = 1
+            });
+
+            memoryStorage.AddItem($"{TRAVEL_PREFIX}123", new TravelInfo { Id = "123", CurrentLocation = 1 });
+#endif
+        }
+
+        [HttpGet("reis/status/{id}")]
+        public async  Task<IActionResult> Status(string id)
+        {
+            var user = memoryStorage.GetItem<CustomerInfo>(id);
+            
+            var page = await io.File.ReadAllTextAsync("Page/status.html");
+
+            page = page.Replace("[id]",id)
+                       .Replace("[name]", user.Name)
+                       .Replace("[full_name]",$"{user.Name} {user.Surname}");
+
+            return Content(page, "text/html", Encoding.UTF8);
         }
 
         [HttpPost("reserveren")]
@@ -63,8 +92,8 @@ namespace ArduinoAPI.Controllers
             return memoryStorage.GetAllItems<CustomerInfo>();
         }
 
-        [HttpGet("reis/locatie")]
-        public object GetTravelLogLocation(string id)
+        [HttpGet("reis/locatie/{id}")]
+        public int GetTravelLogLocation(string id)
         {
             var log = memoryStorage.GetItem<TravelInfo>($"{TRAVEL_PREFIX}{id}");
 
@@ -88,6 +117,8 @@ namespace ArduinoAPI.Controllers
 
             var info = memoryStorage.GetItem<CustomerInfo>(id);
 
+            var css = "background: #c36cbb; height: 50px; cursor: pointer; cursor: pointer; cursor: pointer; font-family: 'Poppins', sans-serif; font-size: 16px; border: none; color: white; margin: 30px 0px 0px 0px; box-shadow: 3px 3px 3px 3px lightgrey; ";
+
             return new ContentResult
             {
                 ContentType = "text/html",
@@ -108,10 +139,10 @@ namespace ArduinoAPI.Controllers
                             <p>Naam: <b>{info.Name}</b></p>
                             <p>AchterNaam: <b>{info.Surname}</b></p>
                             <p>Kaart: <b>{info.CardType}</b></p>
-                            <p>Start: <b>{info.StartLocation}</b></p>
-                            <p>Einde: <b>{info.EndLocation}</b></p>
+                            <p>Start: <b>Peron {info.StartLocation}</b></p>
+                            <p>Einde: <b>Peron {info.EndLocation}</b></p>
                             <p>Uw kaartbewijs is <b>{"#" + id}</b></p>
-                            <a class='btn btn-lg' style="" href='https://monorail.codes/' role='button'>Terug naar de home pagina</a>
+                            <a class='btn btn-lg' style='{css}' href='https://monorail.codes/' role='button'>Terug naar de home pagina</a>
                           </div>
                     </div>
                 </body>
