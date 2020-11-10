@@ -1,7 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
-using io = System.IO.File;
 
 namespace ArduinoAPI.Service
 {
