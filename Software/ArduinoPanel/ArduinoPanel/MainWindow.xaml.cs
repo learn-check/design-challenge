@@ -3,19 +3,13 @@ using System.Linq;
 using System.Windows;
 using System.IO.Ports;
 using System.Collections.Generic;
-using System.Net.Sockets;
-using System.Threading.Tasks;
 using System.Net;
-using System.Text;
+using System.Timers;
+using System.Threading.Tasks;
+using ArduinoPanel.data;
 
 namespace ArduinoPanel
 {
-    enum TcpState 
-    {
-        Null, // base
-        Connected,
-        Disconnected
-    }
     public partial class MainWindow : Window
     {
         /// <summary>
@@ -25,7 +19,16 @@ namespace ArduinoPanel
             BaudRate = 9600
         };
 
-        private TcpState TcpState = TcpState.Null;
+        private readonly ApiHandler Api = new ApiHandler();
+        private readonly Timer UpdateTimer = new Timer();
+        private readonly List<CustomerInfo> customerInfos = new List<CustomerInfo>();
+
+#if DEBUG
+        private readonly string BASE_URL = @"https://localhost:44352/api/";
+#else
+        private readonly string BASE_URL = "";
+#endif
+
         /// <summary>
         /// Stores all the messeages/errors
         /// </summary>
@@ -37,16 +40,32 @@ namespace ArduinoPanel
 
             Closing += (e, s) => OnShutDown();
 
+            UpdateTimer.Interval = 2500; // 2.5 seconds
+
+            UpdateTimer.AutoReset = true;
+
+            UpdateTimer.Enabled = true;
+
+            UpdateTimer.Elapsed += (e, s) => FetchAPI();
 #if DEBUG
-            PortInput.Text = "COM3"; // why not
+            PortInput.Text = "COM3"; // being lazy is fun
 #endif
-            ArduinoConnect.Click += (e, s) => TryConnect();
+            ArduinoConnect.Click += (e, s) => TryConnectArduino();
             
             ArduinoDisconnect.Click += (e, s) => TryDisconnectArduino();
 
-            ServerConnect.Click += (e, s) => HandleServerConnection();
+            ArduinoStartTrain.Click += (e, s) => StartTrain();
+
+            ArduinoStopTrain.Click += (e, s) => StopTrain();
 
             Arduino.DataReceived += DataReceived;
+
+            Reservations.AutoGeneratingColumn += (e, s) =>
+            {
+                s.Column.Width = 75;
+            };
+
+            Reservations.ItemsSource = customerInfos;
         }
 
         /// <summary>
@@ -80,6 +99,30 @@ namespace ArduinoPanel
             Messages.ItemsSource = MessagesList;
         }
 
+        private void StartTrain()
+        { } // TODO
+
+        private void StopTrain()
+        { } // TODO 
+
+        private void FetchAPI()
+        {
+            Dispatcher.Invoke(new Action( async () => {
+
+                StatusLabel.Content = "Bijwerken.....";
+
+                var reservations = await Api.GetAllReservations();
+
+                await Task.Delay(1000);
+
+                Reservations.ItemsSource = null;
+
+                Reservations.ItemsSource = reservations;
+
+                StatusLabel.Content = "Reserveringen";
+            }));
+        }
+
         /// <summary>
         /// Tries to close the connection on given com port
         /// </summary>
@@ -101,7 +144,7 @@ namespace ArduinoPanel
         /// <summary>
         /// Tries to make a connection over the given com port
         /// </summary>
-        private void TryConnect()
+        private void TryConnectArduino()
         {
             if (string.IsNullOrEmpty(PortInput.Text))
             {
@@ -126,99 +169,7 @@ namespace ArduinoPanel
             }
         }
 
-        private async void TryConnectToServer()
-        {
-            await Task.Run(new Action( async () => {
-                
-                Dispatcher.Invoke(new Action(() => {
-                    // change tcp state
-                    // change button text
-                    ServerConnect.Content = "Verbreek verbinding met server";
-                    TcpState = TcpState.Connected;
-                }));
 
-                var Client = new TcpClient
-                {
-                    SendTimeout = 250
-                };
-
-                int NetworkBufferSize = 256;
-                bool StopClient = false;
-                byte[] buffer = new byte[NetworkBufferSize];
-                int bytesRead = 0;
-
-                int port = 43594;
-#if DEBUG
-                string host = "localhost"; // Dev
-#else
-                string host = "207.180.202.119"; // Live
-#endif
-                // Do some magic here
-                try
-                {
-                    await Client.ConnectAsync(host, port);
-
-                    NetworkStream networkStream = Client.GetStream();
-
-                    while (!StopClient)
-                    {
-                        bytesRead = networkStream.Read(buffer, 0, buffer.Length);
-
-                        if (bytesRead > 0)
-                        {
-                            Dispatcher.Invoke(new Action(() => {
-                                DisplayMessage($"[SERVER] {Encoding.UTF8.GetString(buffer)}");
-                            }));
-                        }
-                        // else just keep repeating till the end of times
-                    }
-
-                }
-                catch (Exception ex)
-                {
-                    // welp
-                    // if the ReceiveTimeout is reached an IOException will be raised...
-                    // with an InnerException of type SocketException and ErrorCode 10060
-                    // timeout exception
-                    if (ex.InnerException is SocketException socketExept && socketExept.ErrorCode == 10060)
-                    {
-                        bytesRead = 0;
-                    }
-                    else // fatal error stop client
-                    {
-                        StopClient = true;
-                    }
-                }
-
-                Dispatcher.Invoke(new Action(() => {
-                    ServerConnect.Content = "Maak verbinding met server";
-                    TcpState = TcpState.Disconnected;
-                }));
-            }));
-        }
-
-        private void TryDisconnectFromServer()
-        {
-            // change tcp state
-            // change button text
-        }
-
-        private void HandleServerConnection()
-        {
-            switch (TcpState)
-            {
-                case TcpState.Connected:
-                    TryDisconnectFromServer();
-                    break; // disconnect
-
-                case TcpState.Disconnected:
-                case TcpState.Null:
-                    TryConnectToServer();
-                    break; // create a new connection
-                
-                default: break;
-            }
-        }
 
         /// <summary>
         /// Releases the serial port on application exit
@@ -235,7 +186,7 @@ namespace ArduinoPanel
             }
             catch
             {
-                // meh don't about exception care on shutdown
+                // meh don't care about exception on shutdown
             }
         }
     }

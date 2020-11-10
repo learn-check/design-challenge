@@ -12,6 +12,8 @@ namespace ArduinoAPI.Controllers
     {
         private readonly IMemoryStorage memoryStorage;
 
+        private readonly string TRAVEL_PREFIX = "travel_log_";
+
         public BoekingController(IMemoryStorage storage)
         {
             memoryStorage = storage;
@@ -22,26 +24,53 @@ namespace ArduinoAPI.Controllers
         {
             var userID = GenID(max: 8);
 
-            memoryStorage.AddItem($"travel_log_{userID}", new TravelInfo { Id = userID });
+            memoryStorage.AddItem($"{TRAVEL_PREFIX}{userID}", new TravelInfo { Id = userID, CurrentLocation = customerInfo.StartLocation });
             memoryStorage.AddItem(userID, customerInfo);
 
             return RedirectToAction("Confirm", new { id = userID });
         }
 
-        // TODO update travellog
-        // Need arduino working first tho....
-        public void UpdateTravel()
+        public void UpdateTravel(string id, int nloc)
         {
-            
+            var log = memoryStorage.GetItem<TravelInfo>($"{TRAVEL_PREFIX}{id}");
+
+            if (log == null) return;
+
+            log.CurrentLocation = nloc;
+
+            memoryStorage.UpdateItem($"{TRAVEL_PREFIX}{id}", log);
         }
 
+        [HttpGet("reis/log")]
         public object GetTravelLog(string id)
         {
-            var log = memoryStorage.GetItem<TravelInfo>(id);
+            var log = memoryStorage.GetItem<TravelInfo>($"{TRAVEL_PREFIX}{id}");
 
-            if (log == null) return "";
+            if (log == null) return "nan";
 
-            return log.ToString();
+            return log;
+        }
+
+        [HttpGet("reis/alles")]
+        public object GetAllTravelLogs()
+        {
+            return memoryStorage.GetAllItems<TravelInfo>();
+        }
+
+        [HttpGet("reserveringen/alles")]
+        public object GetAllReservations()
+        {
+            return memoryStorage.GetAllItems<CustomerInfo>();
+        }
+
+        [HttpGet("reis/locatie")]
+        public object GetTravelLogLocation(string id)
+        {
+            var log = memoryStorage.GetItem<TravelInfo>($"{TRAVEL_PREFIX}{id}");
+
+            if (log == null) return 0;
+
+            return log.CurrentLocation;
         }
 
         [HttpGet("status")]
@@ -53,14 +82,7 @@ namespace ArduinoAPI.Controllers
                 return new ContentResult {
                     ContentType = "txt/html",
                     StatusCode = (int) HttpStatusCode.NotFound,
-                    Content = @"<html lang='nl'>
-                                <head>
-                                    <title>404</title>
-                                </head>
-                                <body>
-                                    <h1>404</h1>
-                                <body>
-                                " 
+                    Content = ""
                 };
             }
 

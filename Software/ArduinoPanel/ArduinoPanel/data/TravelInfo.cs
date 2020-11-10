@@ -1,4 +1,4 @@
-﻿namespace ArduinoAPI.Data
+﻿namespace ArduinoPanel.data
 {
     public class TravelInfo
     {

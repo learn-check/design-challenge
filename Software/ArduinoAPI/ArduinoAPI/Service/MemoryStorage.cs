@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace ArduinoAPI.Service
 {
@@ -16,6 +17,14 @@ namespace ArduinoAPI.Service
             return Items.Remove(name);
         }
 
+        public void UpdateItem(string id, object obj)
+        {
+            if (Items.ContainsKey(id))
+            {
+                Items[id] = obj;
+            }
+        }
+
         public bool AddItem(string name, object value)
         {
             if (Items.ContainsKey(name) || value == null) return false;
@@ -29,6 +38,19 @@ namespace ArduinoAPI.Service
                 return (T)Items[name];
             else
                 return default;
+        }
+
+        public List<T> GetAllItems<T>()
+        {
+            var items = new List<T>();
+
+            foreach (var item in Items.Values)
+            {
+                if (item.GetType().Equals(typeof(T)))
+                    items.Add((T)item);
+            }
+
+            return items;
         }
     }
 }

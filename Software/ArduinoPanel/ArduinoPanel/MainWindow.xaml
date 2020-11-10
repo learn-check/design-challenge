@@ -7,12 +7,15 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <TextBox x:Name="PortInput" HorizontalAlignment="Left" Margin="545,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="24"/>
-        <Button x:Name="ArduinoConnect" Content="Maak verbinding" HorizontalAlignment="Left" Margin="420,46,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Portnaam" HorizontalAlignment="Left" Margin="420,10,0,0" VerticalAlignment="Top" Height="24" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <ListBox x:Name="Messages" Margin="10,39,391,119"/>
-        <Button x:Name="ArduinoDisconnect" Content="Verbreek verbinding" HorizontalAlignment="Left" Margin="545,46,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Berichten" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="24" Width="115" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Button x:Name="ServerConnect" Content="Maak verbinding met server" HorizontalAlignment="Left" Margin="420,71,0,0" VerticalAlignment="Top" Width="245"/>
+        <TextBox x:Name="PortInput" Margin="640,65,11,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="24"/>
+        <Button x:Name="ArduinoConnect" Content="Maak verbinding" HorizontalAlignment="Left" Margin="467,109,0,0" VerticalAlignment="Top" Width="167" RenderTransformOrigin="0.709,0.497" Background="#FF5CB85C"/>
+        <Label Content="Portnaam" HorizontalAlignment="Left" Margin="467,65,0,0" VerticalAlignment="Top" Height="24" Width="160" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF5BC0DE"/>
+        <ListBox x:Name="Messages" Margin="467,197,11,20"/>
+        <Button x:Name="ArduinoDisconnect" Content="Verbreek verbinding" Margin="640,109,11,0" VerticalAlignment="Top" RenderTransformOrigin="1.14,-0.179" Background="#FFD9534F"/>
+        <Label Content="Arduino Control" Margin="467,10,11,0" VerticalAlignment="Top" Height="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF5BC0DE"/>
+        <Button x:Name="ArduinoStartTrain" Content="Start trein" HorizontalAlignment="Left" Margin="467,146,0,0" VerticalAlignment="Top" Width="167" Background="#FF5CB85C"/>
+        <Button x:Name="ArduinoStopTrain" Content="Stop trein" Margin="640,146,11,0" VerticalAlignment="Top" RenderTransformOrigin="1.14,-0.179" Background="#FFD9534F"/>
+        <Label x:Name="StatusLabel" Content="Reserveringen" Margin="10,10,353,0" VerticalAlignment="Top" Height="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF5BC0DE"/>
+        <DataGrid x:Name="Reservations" Margin="10,50,353,20"/>
     </Grid>
 </Window>
