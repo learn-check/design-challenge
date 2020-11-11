@@ -17,5 +17,6 @@
         <Button x:Name="ArduinoStopTrain" Content="Stop trein" Margin="640,146,11,0" VerticalAlignment="Top" RenderTransformOrigin="1.14,-0.179" Background="#FFD9534F"/>
         <Label x:Name="StatusLabel" Content="Reserveringen" Margin="10,10,353,0" VerticalAlignment="Top" Height="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF5BC0DE"/>
         <DataGrid x:Name="Reservations" Margin="10,50,353,20"/>
+        <Button x:Name="Clear" Content="ruben" HorizontalAlignment="Left" Margin="467,172,0,0" VerticalAlignment="Top" Width="167" Background="#FF5CB85C"/>
     </Grid>
 </Window>
