@@ -17,3 +17,15 @@ C:\Users\boris\OneDrive\Bureaublad\Project\design-challenge\Software\ArduinoAPI\
 C:\Users\boris\OneDrive\Bureaublad\Project\design-challenge\Software\ArduinoAPI\ArduinoAPI\obj\Debug\netcoreapp3.1\ArduinoAPI.dll
 C:\Users\boris\OneDrive\Bureaublad\Project\design-challenge\Software\ArduinoAPI\ArduinoAPI\obj\Debug\netcoreapp3.1\ArduinoAPI.pdb
 C:\Users\boris\OneDrive\Bureaublad\Project\design-challenge\Software\ArduinoAPI\ArduinoAPI\obj\Debug\netcoreapp3.1\ArduinoAPI.genruntimeconfig.cache
+C:\Users\boris\OneDrive\Bureaublad\Project\design-challenge\Software\ArduinoAPI\ArduinoAPI\bin\Debug\netcoreapp3.1\Page\big-eclipse.png
+C:\Users\boris\OneDrive\Bureaublad\Project\design-challenge\Software\ArduinoAPI\ArduinoAPI\bin\Debug\netcoreapp3.1\Page\homestyle.css
+C:\Users\boris\OneDrive\Bureaublad\Project\design-challenge\Software\ArduinoAPI\ArduinoAPI\bin\Debug\netcoreapp3.1\Page\Logo monorail simple.png
+C:\Users\boris\OneDrive\Bureaublad\Project\design-challenge\Software\ArduinoAPI\ArduinoAPI\bin\Debug\netcoreapp3.1\Page\Logo monorail.png
+C:\Users\boris\OneDrive\Bureaublad\Project\design-challenge\Software\ArduinoAPI\ArduinoAPI\bin\Debug\netcoreapp3.1\Page\mid-eclipse.png
+C:\Users\boris\OneDrive\Bureaublad\Project\design-challenge\Software\ArduinoAPI\ArduinoAPI\bin\Debug\netcoreapp3.1\Page\nav.js
+C:\Users\boris\OneDrive\Bureaublad\Project\design-challenge\Software\ArduinoAPI\ArduinoAPI\bin\Debug\netcoreapp3.1\Page\small-eclipse.png
+C:\Users\boris\OneDrive\Bureaublad\Project\design-challenge\Software\ArduinoAPI\ArduinoAPI\bin\Debug\netcoreapp3.1\Page\status.html
+C:\Users\boris\OneDrive\Bureaublad\Project\design-challenge\Software\ArduinoAPI\ArduinoAPI\bin\Debug\netcoreapp3.1\Page\weppageani.js
+C:\Users\boris\OneDrive\Bureaublad\Project\design-challenge\Software\ArduinoAPI\ArduinoAPI\obj\Debug\netcoreapp3.1\ArduinoAPI.csprojAssemblyReference.cache
+C:\Users\boris\OneDrive\Bureaublad\Project\design-challenge\Software\ArduinoAPI\ArduinoAPI\bin\Debug\netcoreapp3.1\Page\api-booking.html
+C:\Users\boris\OneDrive\Bureaublad\Project\design-challenge\Software\ArduinoAPI\ArduinoAPI\bin\Debug\netcoreapp3.1\Page\api-template.html

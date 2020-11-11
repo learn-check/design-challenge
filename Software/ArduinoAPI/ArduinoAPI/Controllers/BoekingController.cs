@@ -2,6 +2,7 @@
 using ArduinoAPI.Service;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,13 +38,38 @@ namespace ArduinoAPI.Controllers
         [HttpGet("reis/status/{id}")]
         public async  Task<IActionResult> Status(string id)
         {
-            var user = memoryStorage.GetItem<CustomerInfo>(id);
-            
-            var page = await io.File.ReadAllTextAsync("Page/status.html");
+            if (string.IsNullOrEmpty(id))
+            {
+                return new ContentResult
+                {
+                    ContentType = "txt/html",
+                    StatusCode = (int)HttpStatusCode.NotFound,
+                    Content = ""
+                };
+            }
 
-            page = page.Replace("[id]",id)
-                       .Replace("[name]", user.Name)
-                       .Replace("[full_name]",$"{user.Name} {user.Surname}");
+            var info = memoryStorage.GetItem<CustomerInfo>(id);
+            var log = memoryStorage.GetItem<TravelInfo>($"{TRAVEL_PREFIX}{id}");
+
+#if DEBUG
+            var locationUrl = $"https://localhost:44352/api/boeking/reis/locatie/{id}";
+#else
+            var locationUrl = $"https://monorail.code:5000/api/boeking/reis/locatie/{id}";
+#endif
+
+            // This can be done beter but not going to even try with the time we have left......
+            var bindings = new Dictionary<string, object>() {
+                {"[PAGE_TITLE]", info.Surname },
+                {"[LOCATION]", log.CurrentLocation },
+                {"[API_LOCATION_URL]",locationUrl },
+            };
+
+            var page = await io.File.ReadAllTextAsync("Page/api-tracking.html");
+
+            foreach (var pair in bindings)
+            {
+                page = page.Replace(pair.Key, pair.Value.ToString());
+            }
 
             return Content(page, "text/html", Encoding.UTF8);
         }
@@ -59,13 +85,17 @@ namespace ArduinoAPI.Controllers
             return RedirectToAction("Confirm", new { id = userID });
         }
 
-        public void UpdateTravel(string id, int nloc)
+
+        // TODO met ruben even kijken
+        // Hij moet bij elke peron een update sturen
+        [HttpGet("reis/update/locatie/{id}/{nloc}")]
+        public void UpdateTravel(string id, int? nloc)
         {
             var log = memoryStorage.GetItem<TravelInfo>($"{TRAVEL_PREFIX}{id}");
 
             if (log == null) return;
 
-            log.CurrentLocation = nloc;
+            log.CurrentLocation = nloc.GetValueOrDefault();
 
             memoryStorage.UpdateItem($"{TRAVEL_PREFIX}{id}", log);
         }
@@ -102,9 +132,9 @@ namespace ArduinoAPI.Controllers
             return log.CurrentLocation;
         }
 
-        [HttpGet("status")]
+        [HttpGet("status/{id}")]
         [Produces("text/html")]
-        public ContentResult Confirm(string id)
+        public async Task<IActionResult> Confirm(string id)
         {
             if (string.IsNullOrEmpty(id))
             {
@@ -114,43 +144,36 @@ namespace ArduinoAPI.Controllers
                     Content = ""
                 };
             }
+                
 
             var info = memoryStorage.GetItem<CustomerInfo>(id);
 
-            var css = "background: #c36cbb; height: 50px; cursor: pointer; cursor: pointer; cursor: pointer; font-family: 'Poppins', sans-serif; font-size: 16px; border: none; color: white; margin: 30px 0px 0px 0px; box-shadow: 3px 3px 3px 3px lightgrey; ";
+#if DEBUG
+            var statusUrl = $"https://localhost:44352/api/boeking/reis/status/{id}";
+#else
+            var statusUrl = $"https://monorail.code:5000/api/boeking/reis/status/{id}";
+#endif
 
-            return new ContentResult
-            {
-                ContentType = "text/html",
-                StatusCode = (int) HttpStatusCode.OK,
-                Content = @$"<html lang='nl'>
-                <head>
-                    <meta charset='UTF-8'>
-                    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-                    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css' integrity='sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z' crossorigin='anonymous'>
-                    <title>Lorum Ipsum</title>
-                </head>
-                <body>
-                    <div class='ml-auto mr-auto w-50 pt-5'>
-                        <div class='jumbotron'>
-                            <h1 class='display-4'>Uw reis is geboekt!</h1>
-                            <p class='lead'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus malesuada ante non mauris volutpat dignissim id et est. Quisque vitae commodo erat, id mollis nisl.</p>
-                            <hr class='my-4'>
-                            <p>Naam: <b>{info.Name}</b></p>
-                            <p>AchterNaam: <b>{info.Surname}</b></p>
-                            <p>Kaart: <b>{info.CardType}</b></p>
-                            <p>Start: <b>Peron {info.StartLocation}</b></p>
-                            <p>Einde: <b>Peron {info.EndLocation}</b></p>
-                            <p>Uw kaartbewijs is <b>{"#" + id}</b></p>
-                            <a class='btn btn-lg' style='{css}' href='https://monorail.codes/' role='button'>Terug naar de home pagina</a>
-                          </div>
-                    </div>
-                </body>
-                </html>
-                <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.js' integrity='sha512-cEgdeh0IWe1pUYypx4mYPjDxGB/tyIORwjxzKrnoxcif2ZxI7fw81pZWV0lGnPWLrfIHGA7qc964MnRjyCYmEQ==' crossorigin='anonymous'></script>
-                <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js' integrity='sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV' crossorigin='anonymous'></script>
-                <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js' integrity='sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf' crossorigin='anonymous'></script>"
+            // This can be done beter but not going to even try with the time we have left......
+            var bindings = new Dictionary<string, object>() {
+                {"[PAGE_TITLE]", info.Surname },
+                {"[NAME]", info.Name },
+                {"[SURNAME]", info.Surname },
+                {"[CARD_TYPE]", info.CardType },
+                {"[START_LOCATION]", info.StartLocation },
+                {"[END_LOCATION]", info.EndLocation },
+                {"[ID]", id },
+                {"[TRAVEL_TRACKER_URL]",statusUrl },
             };
+
+            var page = await io.File.ReadAllTextAsync("Page/api-booking.html");
+            
+            foreach (var pair in bindings)
+            {
+                page = page.Replace(pair.Key, pair.Value.ToString());
+            }
+
+            return Content(page, "text/html", Encoding.UTF8);
         }
 
         private string GenID(int min = 0, int max = 16)
