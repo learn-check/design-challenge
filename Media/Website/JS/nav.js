@@ -11,39 +11,23 @@ function openNav() {
   function areUSure(){
     var r = confirm("Weet u het zeker dat je deze reis wilt?");
     
-    if (r == true){
+    if (r){
       document.getElementById("button").action;
     }
     else{
       alert("Dat is jammer tot de volgende keer.")
-      return false;
+      return r;
     }
   }
-  // dit is een jav functie die ik heb geschreven zodat 
-  // de klant er zeker van is dat hij de goede reis heeft gekozen.
-  function contactAr(){
-    var myWindow = window.open("mailto:404368@student.fontys.nl");
-    
-    
-  }
-  function contactRu(){
-    var myWindow = window.open("mailto:462404@student.fontys.nl");
-    
-    
-  }
-  function contactRo(){
-    var myWindow = window.open("mailto:367898@student.fontys.nl");
-    
-    
-  }
-  function contactBo(){
-    var myWindow = window.open("mailto:463253@student.fontys.nl");
-    
-    
-  }
-  function contactMa(){
-    var myWindow = window.open("mailto:455150@student.fontys.nl");
-    
-    
-  }
+
   // dit is ervoor om te contact op te nemen met een van onze medewerkers. door middel van email.
+  var emails = [  "mailto:404368@student.fontys.nl", // Art 0
+                  "mailto:462404@student.fontys.nl", // Ruben 1
+                  "mailto:367898@student.fontys.nl", // Robbie 2
+                  "mailto:463253@student.fontys.nl", // ME 3
+                  "mailto:455150@student.fontys.nl" ]; // Mathijs 4
+
+  function openContact(index)
+  {
+    var windows = window.open(emails[index]);
+  }
