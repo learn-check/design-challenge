@@ -55,7 +55,9 @@ nav{
     z-index: 1; 
     top: 0; 
     right:  0;
-    background-color: rgb(95, 72, 91); 
+    background: linear-gradient(to right, #c36cbb, #494964);
+
+    
     overflow-x: hidden; 
     padding-top: 60px; 
     transition: 0.5s; 
@@ -131,7 +133,7 @@ nav{
 .introText h1{
     font-size: 44px;
     font-weight: 500;
-    background: linear-gradient(to right, #494964, #6f6f89);
+    background: linear-gradient(to right, #494964, #c36cbb);
     -webkit-background-clip:text ;
     
     -webkit-text-fill-color: transparent;

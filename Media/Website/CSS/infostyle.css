@@ -26,7 +26,8 @@ body{
   z-index: 1; 
   top: 0; 
   right:  0;
-  background-color: rgb(95, 72, 91); 
+  background: linear-gradient(to right, #c36cbb, #494964);
+
   overflow-x: hidden; 
   padding-top: 60px; 
   transition: 0.5s; 
@@ -88,7 +89,8 @@ body{
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 100px;    
   text-align: left;      
-  background-color: #e4acde;
+  background: linear-gradient(to right, #c36cbb, #494964);
+
   
   font-family: 'Poppins', sans-serif;
   
