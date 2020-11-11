@@ -172,6 +172,19 @@ font-weight: bold;
   text-align: center;
   box-shadow: 3px 3px 3px 3px gray;
 }
+.gridItem h3{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-weight: 1500;
+  background: linear-gradient(to right, #27272c, #c36cbb);
+    -webkit-background-clip:text ;
+    
+    -webkit-text-fill-color: transparent;
+}
+#item1 video{
+  height: 400px;
+  width: 100%;
+}
 #item1{
  background: white;
  border: 1px solid black;
@@ -185,8 +198,9 @@ font-weight: bold;
  
   
 }
-#item4{
- 
+#item4 li{
+  list-style: none;
+  
   
 }
 .gridItem:hover{

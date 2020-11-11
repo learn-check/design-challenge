@@ -46,3 +46,4 @@ function openNav() {
     
     
   }
+  // dit is ervoor om te contact op te nemen met een van onze medewerkers. door middel van email.
