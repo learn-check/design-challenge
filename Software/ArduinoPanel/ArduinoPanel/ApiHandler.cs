@@ -29,5 +29,10 @@ namespace ArduinoPanel
                 return new List<CustomerInfo>();
             }
         }
+
+        public async Task UpdateTravelLocation(CustomerInfo customer, int location)
+        {
+            await Task.Delay(1100);
+        }
     }
 }

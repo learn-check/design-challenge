@@ -23,6 +23,7 @@ namespace ArduinoPanel
         private readonly ApiHandler Api = new ApiHandler();
         private readonly Timer UpdateTimer = new Timer();
         private List<CustomerInfo> customerInfos = new List<CustomerInfo>();
+        private CustomerInfo CurrentCustomer { get; set; }
         private bool CanDoNext { get; set; }
         private int CurrentIndex { get; set; }
 
@@ -98,12 +99,12 @@ namespace ArduinoPanel
 
                     if (data.Equals("Train has arrived\r\n"))
                     {
-                        CanDoNext = true;
                         // Todo send to api train has reached end
+
+                        CurrentCustomer = customerInfos[CurrentIndex++];
+
+                        WriteToArduino($"{CurrentCustomer.StartLocation},{CurrentCustomer.EndLocation}");
                     }
-
-
-
                     DisplayMessage($"[ARDUINO]: {data}");
                     Messages.ScrollIntoView(Messages.Items.Count - 1);
                 }));
@@ -123,26 +124,43 @@ namespace ArduinoPanel
 
         private void StartTrain()
         {
-            if (Arduino.IsOpen && CanDoNext)
+            if (Arduino.IsOpen && customerInfos.Count > 0)
             {
+                CurrentCustomer = customerInfos[CurrentIndex++];
 
-                if (CurrentIndex > customerInfos.Count) {
-                    CurrentIndex = 0;
-                    CanDoNext = true;
-                    return;
-                }
+                WriteToArduino($"{CurrentCustomer.StartLocation},{CurrentCustomer.EndLocation}");
 
-                var user = customerInfos[CurrentIndex++];
-
-                Arduino.WriteLine($"{user.StartLocation},{user.EndLocation}");
-
-                CanDoNext = false;
+                ArduinoStartTrain.IsEnabled = false; // disable until we need to start again
             }
-        } // TODO
+            else
+            {
+                if (!Arduino.IsOpen)
+                {
+                    DisplayMessage("[ERROR] Arduino COM poort is niet open");
+                }
+                else
+                {
+                    DisplayMessage("[INFO] Niet genoeg mensen");
+                }
+            }
+        } 
 
         private void StopTrain()
         {
         } // TODO 
+
+        private void WriteToArduino(string data)
+        {
+            if (Arduino.IsOpen)
+            {
+                Arduino.WriteLine(data);
+                Arduino.BaseStream.Flush();
+            }
+            else
+            {
+                DisplayMessage("[ERROR] Arduino COM poort is niet open");
+            }
+        }
 
         private void FetchAPI()
         {
