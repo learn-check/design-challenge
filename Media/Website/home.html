@@ -102,7 +102,7 @@
             <div class="gridItem" id="item3">
                 <p>Kies uw beginpunt</p>
                 <div class="col-75">
-                    <select id="beginpunt" name="StartLocation">
+                    <select onchange="selectionChanged" id="beginpunt" name="StartLocation">
                       <option value="1">locatie 1</option>
                       <option value="2">locatie 2</option>
                       <option value="3">locatie 3</option>
@@ -114,9 +114,7 @@
             
                 <div class="col-75">
                         <select id="eindpunt" name="EndLocation">
-                          <option value="1">locatie 1</option>
-                          <option value="2">locatie 2</option>
-                          <option value="3">locatie 3</option>
+                          
                         </select>
                  </div>
                 
@@ -127,7 +125,7 @@
             <div class="gridItem" id="item7">
               <div class="row">
                 <p> Klik hier om u beslissing vast te stellen:</p>
-                <input  id="button" type="submit" value="Submit">
+                <input disabled id="button" type="submit" value="Submit">
               </div>
             </form>
 
@@ -150,7 +148,18 @@
      
     </div>
   <div class="slider"></div>
-    
+  <script>
+    document.getElementById("beginpunt").addEventListener("change", selectionChanged);
+    function selectionChanged() {
+    var num = document.getElementById("beginpunt").value;
+    var options = [ (num == 1 ? "" : '<option value="1">locatie 1</option>'),
+                    (num == 2 ? "" : '<option value="2">locatie 2</option>'),
+                    (num == 3 ? "" : '<option value="3">locatie 3</option>') ];
+
+                    document.getElementById("eindpunt").innerHTML = options.toString();
+                    document.getElementById("button").disabled = false;
+  }
+  </script>
     <script
     src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"
     integrity="sha512-IQLehpLoVS4fNzl7IfH8Iowfm5+RiMGtHykgZJl9AWMgqx0AmJ6cRWcB+GaGVtIsnC4voMfm8f2vwtY+6oPjpQ=="
