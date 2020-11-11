@@ -7,22 +7,48 @@
     <title>Frontpage</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="CSS/indexteststyle.css">
+    <link
+    href="https://fonts.googleapis.com/css2?family=Heebo:wght@500;700&family=Lobster&display=swap"
+    rel="stylesheet"
+  />
+    <link rel="stylesheet" href="CSS/indexstyle.css">
 </head>
+
 <body>
+  <!-- sidenav -->
+  <section class="nav-bar-section">
+    <nav id="nav-bar">
+        <div class="burger" id="burger" onclick="openNav()"> 
+          <p>Menu</p>
+            <div class="burger-bar"></div>
+            <div class="burger-bar"></div>
+            <div class="burger-bar"></div>
+        </div>
+        <div id="mySidenav" class="sidenav">
+            <a id="closebtn" href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="home.html">Home</a>
+            <a href="info.html">Informatie</a>
+            <a href="data.html">Data analyse</a>                
+            <a href="about.html">Over ons</a>                
+
+          </div>
+    </nav>
+</section>
     <Header>
         <div class="logoContainer" id="nav">
             <img id="logo" src="Images/Logo monorail.png" alt="logo">
         </div>
         <nav id="nav">
             <ul class="navLinks">
-                <li><a class="navLink" href="home.html">HOME</a></li>
+                <li><a class="navLink" href="home.html">Home</a></li>
                 <li><a  class="navLink" href="info.html">Informatie</a></li>
                 <li><a  class="navLink" href="data.html">Data analyse</a></li>
+                
             </ul>
         </nav>
+      
         <div class="about" id="nav">
-            <h4><a href="test2.html">About?</a></h4>
+            <h4><a href="about.html">Over ons?</a></h4>
         </div>
     </Header>
     <main>
@@ -71,5 +97,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="JS/webpageanimatie.js"></script>
+    <script src="JS/nav.js"></script>
 </body>
 </html>
