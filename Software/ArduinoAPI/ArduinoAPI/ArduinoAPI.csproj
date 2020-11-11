@@ -17,6 +17,9 @@
     <None Update="Page\api-template.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Page\api-tracking.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Page\big-eclipse.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

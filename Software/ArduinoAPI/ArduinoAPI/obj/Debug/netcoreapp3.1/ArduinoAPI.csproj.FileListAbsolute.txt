@@ -26,6 +26,6 @@ C:\Users\boris\OneDrive\Bureaublad\Project\design-challenge\Software\ArduinoAPI\
 C:\Users\boris\OneDrive\Bureaublad\Project\design-challenge\Software\ArduinoAPI\ArduinoAPI\bin\Debug\netcoreapp3.1\Page\small-eclipse.png
 C:\Users\boris\OneDrive\Bureaublad\Project\design-challenge\Software\ArduinoAPI\ArduinoAPI\bin\Debug\netcoreapp3.1\Page\status.html
 C:\Users\boris\OneDrive\Bureaublad\Project\design-challenge\Software\ArduinoAPI\ArduinoAPI\bin\Debug\netcoreapp3.1\Page\weppageani.js
-C:\Users\boris\OneDrive\Bureaublad\Project\design-challenge\Software\ArduinoAPI\ArduinoAPI\obj\Debug\netcoreapp3.1\ArduinoAPI.csprojAssemblyReference.cache
 C:\Users\boris\OneDrive\Bureaublad\Project\design-challenge\Software\ArduinoAPI\ArduinoAPI\bin\Debug\netcoreapp3.1\Page\api-booking.html
 C:\Users\boris\OneDrive\Bureaublad\Project\design-challenge\Software\ArduinoAPI\ArduinoAPI\bin\Debug\netcoreapp3.1\Page\api-template.html
+C:\Users\boris\OneDrive\Bureaublad\Project\design-challenge\Software\ArduinoAPI\ArduinoAPI\bin\Debug\netcoreapp3.1\Page\api-tracking.html
