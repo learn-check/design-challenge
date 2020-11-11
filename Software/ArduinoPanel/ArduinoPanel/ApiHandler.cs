@@ -11,7 +11,8 @@ namespace ArduinoPanel
     {
         private readonly HttpClient client = new HttpClient();
 #if DEBUG
-        private readonly string BASE_URL = @"https://localhost:44352/api/boeking/";
+        //private readonly string BASE_URL = @"https://localhost:44352/api/boeking/";
+        private readonly string BASE_URL = @"http://monorail.codes:5000/api/boeking/";
 #else
         private readonly string BASE_URL = @"http://monorail.codes:5000/api/boeking/";
 #endif

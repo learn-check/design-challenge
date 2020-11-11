@@ -7,6 +7,7 @@ using System.Net;
 using System.Timers;
 using System.Threading.Tasks;
 using ArduinoPanel.data;
+using System.Text;
 
 namespace ArduinoPanel
 {
@@ -21,7 +22,9 @@ namespace ArduinoPanel
 
         private readonly ApiHandler Api = new ApiHandler();
         private readonly Timer UpdateTimer = new Timer();
-        private readonly List<CustomerInfo> customerInfos = new List<CustomerInfo>();
+        private List<CustomerInfo> customerInfos = new List<CustomerInfo>();
+        private bool CanDoNext { get; set; }
+        private int CurrentIndex { get; set; }
 
 #if DEBUG
         private readonly string BASE_URL = @"https://localhost:44352/api/";
@@ -38,6 +41,9 @@ namespace ArduinoPanel
         {
             InitializeComponent();
 
+            CurrentIndex = 0;
+            CanDoNext = true;
+
             Closing += (e, s) => OnShutDown();
 
             UpdateTimer.Interval = 2500; // 2.5 seconds
@@ -48,7 +54,7 @@ namespace ArduinoPanel
 
             UpdateTimer.Elapsed += (e, s) => FetchAPI();
 #if DEBUG
-            PortInput.Text = "COM3"; // being lazy is fun
+            PortInput.Text = "COM4"; // being lazy is fun
 #endif
             ArduinoConnect.Click += (e, s) => TryConnectArduino();
             
@@ -66,6 +72,13 @@ namespace ArduinoPanel
             };
 
             Reservations.ItemsSource = customerInfos;
+
+            Clear.Click += (e, s) => {
+
+                MessagesList.Clear();
+                Messages.ItemsSource = null;
+                Messages.ItemsSource = MessagesList;
+            };
         }
 
         /// <summary>
@@ -82,6 +95,15 @@ namespace ArduinoPanel
             if (!string.IsNullOrEmpty(data) && data.Last() == '\n' && data != "-1")
             {
                 Dispatcher.Invoke(new Action(() => {
+
+                    if (data.Equals("Train has arrived\r\n"))
+                    {
+                        CanDoNext = true;
+                        // Todo send to api train has reached end
+                    }
+
+
+
                     DisplayMessage($"[ARDUINO]: {data}");
                     Messages.ScrollIntoView(Messages.Items.Count - 1);
                 }));
@@ -100,10 +122,27 @@ namespace ArduinoPanel
         }
 
         private void StartTrain()
-        { } // TODO
+        {
+            if (Arduino.IsOpen && CanDoNext)
+            {
+
+                if (CurrentIndex > customerInfos.Count) {
+                    CurrentIndex = 0;
+                    CanDoNext = true;
+                    return;
+                }
+
+                var user = customerInfos[CurrentIndex++];
+
+                Arduino.WriteLine($"{user.StartLocation},{user.EndLocation}");
+
+                CanDoNext = false;
+            }
+        } // TODO
 
         private void StopTrain()
-        { } // TODO 
+        {
+        } // TODO 
 
         private void FetchAPI()
         {
@@ -111,13 +150,13 @@ namespace ArduinoPanel
 
                 StatusLabel.Content = "Bijwerken.....";
 
-                var reservations = await Api.GetAllReservations();
+                customerInfos = await Api.GetAllReservations();
 
                 await Task.Delay(1000);
 
                 Reservations.ItemsSource = null;
 
-                Reservations.ItemsSource = reservations;
+                Reservations.ItemsSource = customerInfos;
 
                 StatusLabel.Content = "Reserveringen";
             }));

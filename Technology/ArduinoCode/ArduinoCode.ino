@@ -6,11 +6,15 @@
 
 Servo myservo;
 int pos = 0;
-
 bool door = false;
 
-int stopCount = 0;
-int stopAmount = 2;
+int currentStation = 1;
+int startStation = 2;
+int endStation = 1;
+
+bool atStart;
+bool atEnd;
+bool hasReceived;
 
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
@@ -30,22 +34,41 @@ void stopTrain(){
   if(door){  
     for (pos = 0; pos <= 90; pos ++) { 
     myservo.write(pos);   
-    delay(5);              
+    delay(5);             
     }
-    lcd.clear();
-    lcd.setCursor(2, 0);
-    lcd.print("Arrived"); 
-    stopCount = 0;
+    Serial.println("Train has arrived"); 
   }
   else{  
     for (pos = 90; pos >= 0; pos --) {
     myservo.write(pos);  
     delay(5);                
     }
-    lcd.clear();
-      lcd.setCursor(2, 0);
-      lcd.print("Left");
+    Serial.println("Train has left the station"); 
   }   
+}
+
+void moveTrain(){
+  if(currentStation == startStation  && !atStart){
+    atStart = true;
+    atEnd = false;
+    
+    door = true;
+    stopTrain();
+    delay(1000);
+    door = false;
+    stopTrain();
+  }
+
+  if(atStart && !atEnd){
+    if(currentStation == endStation){
+      atEnd = true;
+      atStart = false;
+      hasReceived = false;
+      
+      door = true;
+      stopTrain();
+    }
+  }
 }
 
 void checkMovement(){
@@ -53,43 +76,42 @@ void checkMovement(){
   bool buttonStatus = digitalRead(2);
 
   if(buttonStatus){
-    stopCount++;
-    Serial.println(stopCount);
+    currentStation++;
+    if(currentStation == 4){
+      currentStation = 1;
+    }
+    Serial.println(currentStation);
     delay(150);
-  }
-
-  if(stopCount == stopAmount){
-    door = true;
-    stopTrain();
-    delay(1000);
-    door = false;
-    stopTrain();
   }
 }
 
 void loop() {
-  checkMovement();
+  if(hasReceived){
+    checkMovement(); 
+    moveTrain();
+  }
   
-  /*if (Serial.available() > 0)
+  if (Serial.available() > 0)
   {
     char received = Serial.read();
-
-    if (received == '\n')
+    
+    if(received == ','){
+      Serial.println("Arduino Received: " + message);
+      delay(100);
+      startStation = message.toInt();
+      message = "";
+    }
+    else if (received == '\n')
     {
       Serial.println("Arduino Received: " + message);
       delay(100);
-      StopAmount = message.toInt();
-      StopCount = 0;
-      door = false;
-      stopTrain();
-      Serial.println("Train has left the station");
-      lcd.clear();
-      lcd.setCursor(2, 0);
-      lcd.print("Left");
+      endStation = message.toInt();
+      hasReceived = true;
+      message = "";
     }
     else 
     {
       message += received;
     }
-  }*/
+  }
 }
