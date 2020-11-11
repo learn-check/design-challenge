@@ -52,9 +52,9 @@ namespace ArduinoAPI.Controllers
             var log = memoryStorage.GetItem<TravelInfo>($"{TRAVEL_PREFIX}{id}");
 
 #if DEBUG
-            var locationUrl = $"https://localhost:44352/api/boeking/reis/locatie/{id}";
+            var locationUrl = $"http://localhost:44352/api/boeking/reis/locatie/{id}";
 #else
-            var locationUrl = $"https://monorail.code:5000/api/boeking/reis/locatie/{id}";
+            var locationUrl = $"http://monorail.codes:5000/api/boeking/reis/locatie/{id}";
 #endif
 
             // This can be done beter but not going to even try with the time we have left......
@@ -151,7 +151,7 @@ namespace ArduinoAPI.Controllers
 #if DEBUG
             var statusUrl = $"https://localhost:44352/api/boeking/reis/status/{id}";
 #else
-            var statusUrl = $"https://monorail.code:5000/api/boeking/reis/status/{id}";
+            var statusUrl = $"http://monorail.codes:5000/api/boeking/reis/status/{id}";
 #endif
 
             // This can be done beter but not going to even try with the time we have left......
