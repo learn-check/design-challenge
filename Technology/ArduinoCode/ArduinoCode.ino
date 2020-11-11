@@ -15,6 +15,7 @@ int endStation = 1;
 bool atStart;
 bool atEnd;
 bool hasReceived;
+bool startAtEnd;
 
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
@@ -28,6 +29,36 @@ void setup() {
   lcd.backlight();
 
   pinMode(2, INPUT);
+}
+
+void showScreen() {
+  if(currentStation == startStation || currentStation == endStation){
+    lcd.clear();
+    lcd.setCursor(1, 0);
+    lcd.print("Train Location:");
+    lcd.setCursor(1,1);
+    lcd.print(currentStation);
+  }
+  if(currentStation != endStation || startAtEnd){
+    delay(1000);
+    lcd.clear();
+    if(currentStation == 3){ 
+      lcd.setCursor(1, 0);
+      lcd.print("Train Location:");
+      lcd.setCursor(1,1);
+      char info[64];
+      sprintf(info, "%d -> 1", currentStation);
+      lcd.print(info);
+    }
+    else{
+      lcd.setCursor(1, 0);
+      lcd.print("Train Location:");
+      lcd.setCursor(1,1);
+      char info[64];
+      sprintf(info, "%d -> %d", currentStation, currentStation + 1);
+      lcd.print(info);
+    }
+  }
 }
 
 void stopTrain(){
@@ -51,12 +82,14 @@ void moveTrain(){
   if(currentStation == startStation  && !atStart){
     atStart = true;
     atEnd = false;
-    
-    door = true;
-    stopTrain();
-    delay(1000);
-    door = false;
-    stopTrain();
+
+    if(startStation != endStation){
+      door = true;
+      stopTrain();
+      delay(1000);
+      door = false;
+      stopTrain();
+    }
   }
 
   if(atStart && !atEnd){
@@ -80,8 +113,10 @@ void checkMovement(){
     if(currentStation == 4){
       currentStation = 1;
     }
+    startAtEnd = false;
     Serial.println(currentStation);
     delay(150);
+    showScreen();
   }
 }
 
@@ -96,18 +131,29 @@ void loop() {
     char received = Serial.read();
     
     if(received == ','){
-      Serial.println("Arduino Received: " + message);
+      char info[64];
+      sprintf(info, "CurrentStation: %d", currentStation);
+      Serial.println(info);
+      delay(150);
+      Serial.println("StartStation: " + message);
       delay(100);
       startStation = message.toInt();
       message = "";
     }
     else if (received == '\n')
     {
-      Serial.println("Arduino Received: " + message);
+      Serial.println("EndStation: " + message);
       delay(100);
       endStation = message.toInt();
+      if(endStation == currentStation && endStation != startStation){
+        startAtEnd = true;
+      }
+      else{
+        startAtEnd = false;
+      }
       hasReceived = true;
       message = "";
+      showScreen();
     }
     else 
     {

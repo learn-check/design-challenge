@@ -780,9 +780,21 @@
       <Project>{FE15AD6F-CD46-F548-E21C-418BC31B3CB9}</Project>
       <Name>Unity.VisualStudio.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="SteamVR_Input_Editor.csproj">
+      <Project>{0F26B572-EC3D-5717-96A7-BD1E522109F3}</Project>
+      <Name>SteamVR_Input_Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="SteamVR_Editor.csproj">
+      <Project>{809205F5-13C7-715B-2311-B6FA27E804F7}</Project>
+      <Name>SteamVR_Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.XR.Management.Samples.Editor.csproj">
       <Project>{B1DB18D1-462F-FE13-A5DE-0B1812F1FF2D}</Project>
       <Name>Unity.XR.Management.Samples.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="SteamVR.csproj">
+      <Project>{7D9BEDB6-0F59-8733-ABF1-D182E6869CD9}</Project>
+      <Name>SteamVR</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.TextMeshPro.csproj">
       <Project>{90990E03-2195-7DC1-613C-2CAE1B7CEFB8}</Project>
@@ -792,25 +804,13 @@
       <Project>{54966E3B-520E-83F3-C785-5A1ADB15ABFE}</Project>
       <Name>UnityEditor.XR.LegacyInputHelpers</Name>
     </ProjectReference>
-    <ProjectReference Include="UnityEditor.UI.csproj">
-      <Project>{154B08D1-35B2-AD8E-71EC-82BA117BD2C0}</Project>
-      <Name>UnityEditor.UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="SteamVR_Input_Editor.csproj">
-      <Project>{0F26B572-EC3D-5717-96A7-BD1E522109F3}</Project>
-      <Name>SteamVR_Input_Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="SteamVR_Editor.csproj">
-      <Project>{809205F5-13C7-715B-2311-B6FA27E804F7}</Project>
-      <Name>SteamVR_Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="SteamVR.csproj">
-      <Project>{7D9BEDB6-0F59-8733-ABF1-D182E6869CD9}</Project>
-      <Name>SteamVR</Name>
-    </ProjectReference>
     <ProjectReference Include="SteamVR_Windows_EditorHelper.csproj">
       <Project>{B4856F2F-3AED-EBB9-C0DC-762A956156E3}</Project>
       <Name>SteamVR_Windows_EditorHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEditor.UI.csproj">
+      <Project>{154B08D1-35B2-AD8E-71EC-82BA117BD2C0}</Project>
+      <Name>UnityEditor.UI</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.XR.OpenVR.csproj">
       <Project>{BE96A5EB-C421-710A-6AAA-5C311FD5F2A4}</Project>
