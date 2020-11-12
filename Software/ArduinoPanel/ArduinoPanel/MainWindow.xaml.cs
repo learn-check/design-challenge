@@ -95,7 +95,7 @@ namespace ArduinoPanel
 
             if (!string.IsNullOrEmpty(data) && data.Last() == '\n' && data != "-1")
             {
-                Dispatcher.Invoke(new Action(() => {
+                Dispatcher.Invoke(new Action( async () => {
 
                     if (data.Equals("Train has arrived\r\n"))
                     {
@@ -105,13 +105,22 @@ namespace ArduinoPanel
                         {
                             DisplayMessage("[INFO] Lijst is leeg, trein gaat stoppen");
                             StopTrain();
-                            return;
                         }
-
-                        CurrentCustomer = customerInfos[CurrentIndex++];
-
-                        WriteToArduino($"{CurrentCustomer.StartLocation},{CurrentCustomer.EndLocation}");
+                        else
+                        {
+                            CurrentCustomer = customerInfos[CurrentIndex++];
+                            WriteToArduino($"{CurrentCustomer.StartLocation},{CurrentCustomer.EndLocation}");
+                        }
+                        
                     }
+                    else if (int.TryParse(data, out var nval))
+                    {
+                        if (nval > 0)
+                        {
+                            await Api.UpdateTravelLocation(CurrentCustomer, nval);
+                        }
+                    }
+
                     DisplayMessage($"[ARDUINO]: {data}");
                     Messages.ScrollIntoView(Messages.Items.Count - 1);
                 }));
