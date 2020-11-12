@@ -101,7 +101,7 @@ namespace ArduinoPanel
                     {
                         // Todo send to api train has reached end
 
-                        if (CurrentIndex > customerInfos.Count)
+                        if (CurrentIndex >= customerInfos.Count - 1)
                         {
                             DisplayMessage("[INFO] Lijst is leeg, trein gaat stoppen");
                             StopTrain();
@@ -109,15 +109,20 @@ namespace ArduinoPanel
                         else
                         {
                             CurrentCustomer = customerInfos[CurrentIndex++];
+                            await Task.Delay(2000);
                             WriteToArduino($"{CurrentCustomer.StartLocation},{CurrentCustomer.EndLocation}");
                         }
                         
                     }
                     else if (int.TryParse(data, out var nval))
                     {
-                        if (nval > 0)
+                        if (nval > 0 && nval <= 3)
                         {
                             await Api.UpdateTravelLocation(CurrentCustomer, nval);
+                        }
+                        else
+                        {
+                            DisplayMessage($"[ARDUINO] gvd ruben je had een taak {data}");
                         }
                     }
 
