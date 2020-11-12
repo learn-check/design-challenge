@@ -101,6 +101,13 @@ namespace ArduinoPanel
                     {
                         // Todo send to api train has reached end
 
+                        if (CurrentIndex > customerInfos.Count)
+                        {
+                            DisplayMessage("[INFO] Lijst is leeg, trein gaat stoppen");
+                            StopTrain();
+                            return;
+                        }
+
                         CurrentCustomer = customerInfos[CurrentIndex++];
 
                         WriteToArduino($"{CurrentCustomer.StartLocation},{CurrentCustomer.EndLocation}");
@@ -147,7 +154,8 @@ namespace ArduinoPanel
 
         private void StopTrain()
         {
-        } // TODO 
+            ArduinoStartTrain.IsEnabled = true;
+        }
 
         private void WriteToArduino(string data)
         {
