@@ -32,7 +32,14 @@ namespace ArduinoPanel
 
         public async Task UpdateTravelLocation(CustomerInfo customer, int location)
         {
-            await Task.Delay(1100);
+            try
+            {
+                await client.PostAsync($"{BASE_URL}reis/update/locatie/{customer.Id}/{location}",null);
+            }
+            catch (Exception e) // Do i really care?, no
+            {
+
+            }
         }
     }
 }

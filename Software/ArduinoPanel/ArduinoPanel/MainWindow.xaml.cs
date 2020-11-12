@@ -26,6 +26,7 @@ namespace ArduinoPanel
         private CustomerInfo CurrentCustomer { get; set; }
         private bool CanDoNext { get; set; }
         private int CurrentIndex { get; set; }
+        
 
 #if DEBUG
         private readonly string BASE_URL = @"https://localhost:44352/api/";
@@ -43,7 +44,6 @@ namespace ArduinoPanel
             InitializeComponent();
 
             CurrentIndex = 0;
-            CanDoNext = true;
 
             Closing += (e, s) => OnShutDown();
 
@@ -106,7 +106,7 @@ namespace ArduinoPanel
                             DisplayMessage("[INFO] Lijst is leeg, trein gaat stoppen");
                             StopTrain();
                         }
-                        else
+                        else if (CanDoNext)
                         {
                             CurrentCustomer = customerInfos[CurrentIndex++];
                             await Task.Delay(2000);
@@ -114,7 +114,7 @@ namespace ArduinoPanel
                         }
                         
                     }
-                    else if (int.TryParse(data, out var nval))
+                    else if (int.TryParse(data, out var nval)) // Update api travel location
                     {
                         if (nval > 0 && nval <= 3)
                         {
@@ -122,7 +122,7 @@ namespace ArduinoPanel
                         }
                         else
                         {
-                            DisplayMessage($"[ARDUINO] gvd ruben je had een taak {data}");
+                            DisplayMessage($"[ARDUINO] Gvd ruben je had een taak {data}");
                         }
                     }
 
@@ -145,6 +145,7 @@ namespace ArduinoPanel
 
         private void StartTrain()
         {
+            
             if (Arduino.IsOpen && customerInfos.Count > 0)
             {
                 CurrentCustomer = customerInfos[CurrentIndex++];
@@ -152,6 +153,8 @@ namespace ArduinoPanel
                 WriteToArduino($"{CurrentCustomer.StartLocation},{CurrentCustomer.EndLocation}");
 
                 ArduinoStartTrain.IsEnabled = false; // disable until we need to start again
+
+                CanDoNext = true;
             }
             else
             {
@@ -169,6 +172,7 @@ namespace ArduinoPanel
         private void StopTrain()
         {
             ArduinoStartTrain.IsEnabled = true;
+            CanDoNext = false;
         }
 
         private void WriteToArduino(string data)
