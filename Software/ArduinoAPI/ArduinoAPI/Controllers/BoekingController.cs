@@ -72,6 +72,7 @@ namespace ArduinoAPI.Controllers
             var bindings = new Dictionary<string, object>() {
                 {"[PAGE_TITLE]", info.Surname },
                 {"[LOCATION]", log.CurrentLocation },
+                {"[END_LOCATION]", info.EndLocation },
                 {"[API_LOCATION_URL]",locationUrl },
             };
 
