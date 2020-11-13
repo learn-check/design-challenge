@@ -25,7 +25,7 @@
                 <a id="closebtn" href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                 <a href="home.html">Home</a>
                 <a href="info.html">Informatie</a>
-                <a href="data.html">Data analyse</a>                
+                <a href="data.html">Data-analyse</a>                
               <a href="about.html">Over ons</a>                
 
               </div>
@@ -47,7 +47,7 @@
             <a href="info.html">Informatie</a>
         </div>
         <div id="box4">            
-            <a href="data.html">Data analyse</a>
+            <a href="data.html">Data-analyse</a>
             
         </div>
     </div>
@@ -68,7 +68,7 @@
                         <label for="fname">Voornaam</label>
                       </div>
                       <div class="col-75">
-                        <input type="text" id="fname" name="Name" placeholder="Uw naam.." required>
+                        <input type="text" id="fname" name="Name" placeholder="Uw Voornaam..." required>
                       </div>
                     </div>
                     <div class="row">
@@ -76,7 +76,7 @@
                         <label for="lname">Achternaam</label>
                       </div>
                       <div class="col-75">
-                        <input type="text" id="lname" name="Surname" placeholder="Uw Achternaam.." required>
+                        <input type="text" id="lname" name="Surname" placeholder="Uw Achternaam..." required>
                       </div>
                     </div>
                     <div class="row">
@@ -103,9 +103,9 @@
                 <p>Kies uw beginpunt</p>
                 <div class="col-75">
                     <select onchange="selectionChanged" id="beginpunt" name="StartLocation">
-                      <option value="1">locatie 1</option>
-                      <option value="2">locatie 2</option>
-                      <option value="3">locatie 3</option>
+                      <option value="1">Fontys Hogeschool</option>
+                      <option value="2">Eindhoven centrum</option>
+                      <option value="3">Strijp-S</option>
                     </select>
                   </div>
             </div>
@@ -114,8 +114,8 @@
             
                 <div class="col-75">
                         <select id="eindpunt" name="EndLocation">
-                          <option value="2">locatie 2</option>
-                          <option value="3">locatie 3</option>
+                          <option value="2">Eindhoven centrum</option>
+                          <option value="3">Strijp-S</option>
                         </select>
                  </div>
                 
@@ -153,9 +153,9 @@
     document.getElementById("beginpunt").addEventListener("change", selectionChanged);
     function selectionChanged() {
     var num = document.getElementById("beginpunt").value;
-    var options = [ (num == 1 ? "" : '<option value="1">locatie 1</option>'),
-                    (num == 2 ? "" : '<option value="2">locatie 2</option>'),
-                    (num == 3 ? "" : '<option value="3">locatie 3</option>') ];
+    var options = [ (num == 1 ? "" : '<option value="1">Fontys Hogeschool</option>'),
+                    (num == 2 ? "" : '<option value="2">Eindhoven centrum</option>'),
+                    (num == 3 ? "" : '<option value="3">Strijp-S</option>') ];
 
                     document.getElementById("eindpunt").innerHTML = options.toString();
                     document.getElementById("button").disabled = false;
