@@ -1,12 +1,20 @@
 #include <LiquidCrystal_I2C.h>
 #include <Servo.h>
 
-#define servoPin 8
-#define pirPin 9
+#define stop1Pin 8
+#define stop2Pin 7
+#define trigPin 9
+#define echoPin 10
 
-Servo myservo;
-int pos = 0;
+Servo servo1;
+Servo servo2;
+
+int pos1 = 0;
+int pos2 = 0;
 bool door = false;
+bool isOpen = true;
+bool hasPassedStart = false;
+bool isDone = false;
 
 int currentStation = 1;
 int startStation = 2;
@@ -21,18 +29,30 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 String message;
 
+double distance = 10;
+double duration;
+
 void setup() {
   Serial.begin(9600);
-  myservo.attach(servoPin);
-  pinMode(pirPin, INPUT);
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  servo1.attach(stop1Pin);
   lcd.begin();
   lcd.backlight();
+}
 
-  pinMode(2, INPUT);
+void Distance() {
+  digitalWrite(trigPin, LOW);
+  delay(2);
+  digitalWrite(trigPin, HIGH);
+  delay(10);
+  digitalWrite(trigPin, LOW);
+  duration = pulseIn(echoPin, HIGH);
+  distance = duration * 0.034 / 2;
 }
 
 void showScreen() {
-  if(currentStation == startStation || currentStation == endStation){
+  if(currentStation == startStation || currentStation == endStation && hasPassedStart){
     lcd.clear();
     lcd.setCursor(1, 0);
     lcd.print("Train Location:");
@@ -62,19 +82,32 @@ void showScreen() {
 }
 
 void stopTrain(){
-  if(door){  
-    for (pos = 0; pos <= 90; pos ++) { 
-    myservo.write(pos);   
+  if(door && isOpen){  
+    servo2.attach(stop2Pin);
+    servo2.write(10);
+    for (pos1 = 0; pos1 <= 90; pos1 ++) { 
+    servo1.write(pos1);   
     delay(5);             
     }
-    Serial.println("Train has arrived"); 
+    servo2.detach();
+    
+    isOpen = false;
+    delay(100);
   }
-  else{  
-    for (pos = 90; pos >= 0; pos --) {
-    myservo.write(pos);  
+  else if(!door && !isOpen){  
+    servo2.attach(stop2Pin);
+    servo2.write(10);
+    delay(100);
+    for (pos1 = 90; pos1 >= 0; pos1 --) {
+    servo1.write(pos1);  
     delay(5);                
     }
-    Serial.println("Train has left the station"); 
+    servo2.detach();
+    isOpen = true;
+    if(currentStation == startStation){
+      Serial.println("Train has left the station"); 
+    }
+    delay(100);
   }   
 }
 
@@ -82,6 +115,7 @@ void moveTrain(){
   if(currentStation == startStation  && !atStart){
     atStart = true;
     atEnd = false;
+    hasPassedStart = true;
 
     if(startStation != endStation){
       door = true;
@@ -100,15 +134,15 @@ void moveTrain(){
       
       door = true;
       stopTrain();
+      Serial.println("Train has arrived"); 
+      hasPassedStart = false;
+      hasReceived = false;
     }
   }
 }
 
 void checkMovement(){
-  //bool pirStatus = digitalRead(pirPin);
-  bool buttonStatus = digitalRead(2);
-
-  if(buttonStatus){
+  if(distance < 10){
     currentStation++;
     if(currentStation == 4){
       currentStation = 1;
@@ -122,6 +156,7 @@ void checkMovement(){
 
 void loop() {
   if(hasReceived){
+    Distance();
     checkMovement(); 
     moveTrain();
   }
@@ -139,8 +174,17 @@ void loop() {
       delay(100);
       startStation = message.toInt();
       message = "";
+      isDone = false;
     }
-    else if (received == '\n')
+    else if(message == "-1"){
+      Serial.println("Done");
+      startStation = currentStation;
+      endStation = currentStation;
+      message = "";
+      isDone = true;
+      showScreen();
+    }
+    else if (received == '\n' && !isDone)
     {
       Serial.println("EndStation: " + message);
       delay(100);
@@ -150,6 +194,10 @@ void loop() {
       }
       else{
         startAtEnd = false;
+      }
+      if(currentStation != startStation){
+        door = false;
+        stopTrain();
       }
       hasReceived = true;
       message = "";
