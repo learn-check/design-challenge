@@ -14,25 +14,40 @@ namespace ArduinoPanel
     public partial class MainWindow : Window
     {
         /// <summary>
-        /// Default settings for the arduino
+        /// Default settings for the arduino, 9600 as de default baud rate
         /// </summary>
-        private readonly SerialPort Arduino = new SerialPort() {
-            BaudRate = 9600
-        };
+        private readonly SerialPort Arduino = new SerialPort { BaudRate = 9600 };
 
+        /// <summary>
+        /// Helper class for communicating with our api
+        /// </summary>
         private readonly ApiHandler Api = new ApiHandler();
+
+        /// <summary>
+        /// Timer used to update our datagrid with the latest info from the api
+        /// </summary>
         private readonly Timer UpdateTimer = new Timer();
+
+        /// <summary>
+        /// List of all the current reservations from the api
+        /// </summary>
         private List<CustomerInfo> customerInfos = new List<CustomerInfo>();
+        
+        /// <summary>
+        /// The current customer who is traveling on the monorail
+        /// </summary>
         private CustomerInfo CurrentCustomer { get; set; }
+
+        /// <summary>
+        /// Indicates if there is a next travel
+        /// </summary>
         private bool CanDoNext { get; set; }
+
+        /// <summary>
+        /// Current customer index
+        /// </summary>
         private int CurrentIndex { get; set; }
         
-
-#if DEBUG
-        private readonly string BASE_URL = @"https://localhost:44352/api/";
-#else
-        private readonly string BASE_URL = "";
-#endif
 
         /// <summary>
         /// Stores all the messeages/errors
@@ -97,27 +112,28 @@ namespace ArduinoPanel
             {
                 Dispatcher.Invoke(new Action( async () => {
 
+                    // monorail has reached the given station
                     if (data.Equals("Train has arrived\r\n"))
                     {
-                        // Todo send to api train has reached end
-
                         if (CurrentIndex >= customerInfos.Count - 1)
                         {
                             DisplayMessage("[INFO] Lijst is leeg, trein gaat stoppen");
                             StopTrain();
                         }
-                        else if (CanDoNext)
+                        else if (CanDoNext) 
                         {
+                            // send the next location for the monorail to travel to
                             CurrentCustomer = customerInfos[CurrentIndex++];
-                            await Task.Delay(2000);
+                            await Task.Delay(3000);
                             WriteToArduino($"{CurrentCustomer.StartLocation},{CurrentCustomer.EndLocation}");
                         }
                         
                     }
-                    else if (int.TryParse(data, out var nval)) // Update api travel location
+                    else if (int.TryParse(data, out var nval)) 
                     {
                         if (nval > 0 && nval <= 3)
                         {
+                            // Updates api travel location
                             await Api.UpdateTravelLocation(CurrentCustomer, nval);
                         }
                         else
@@ -143,6 +159,9 @@ namespace ArduinoPanel
             Messages.ItemsSource = MessagesList;
         }
 
+        /// <summary>
+        /// Tells the arduino to start moving the monorail to a given station
+        /// </summary>
         private void StartTrain()
         {
             
@@ -169,12 +188,20 @@ namespace ArduinoPanel
             }
         } 
 
+        /// <summary>
+        /// Tells the arduino to stop moving the monorail
+        /// </summary>
         private void StopTrain()
         {
             ArduinoStartTrain.IsEnabled = true;
             CanDoNext = false;
+            WriteToArduino("-1");
         }
 
+        /// <summary>
+        /// Writes the given data to the ardruino over the serialport
+        /// </summary>
+        /// <param name="data"> Data to send to the arduino</param>
         private void WriteToArduino(string data)
         {
             if (Arduino.IsOpen)
@@ -188,8 +215,13 @@ namespace ArduinoPanel
             }
         }
 
+        /// <summary>
+        /// Gets a list of the current reservations that are stored in our REST API, gets called by a timer every 2.5 seconds
+        /// </summary>
         private void FetchAPI()
         {
+            // The timer runs on a different thread so we need to invoke
+            // in to the main thread before we can update the datagrid with the reservations
             Dispatcher.Invoke(new Action( async () => {
 
                 StatusLabel.Content = "Bijwerken.....";
@@ -207,7 +239,7 @@ namespace ArduinoPanel
         }
 
         /// <summary>
-        /// Tries to close the connection on given com port
+        /// Tries to close the connection on given com port, if it fails a message with the error will be displayed
         /// </summary>
         private void TryDisconnectArduino()
         {
@@ -225,7 +257,7 @@ namespace ArduinoPanel
         }
 
         /// <summary>
-        /// Tries to make a connection over the given com port
+        /// Tries to make a connection over the given com port, if it fails a message with the error will be displayed
         /// </summary>
         private void TryConnectArduino()
         {
