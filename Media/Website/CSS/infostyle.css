@@ -210,7 +210,9 @@ font-weight: bold;
   box-shadow: 3px 3px 3px 3px darkgrey;
 
 }
-
+#video1{
+  background: transparent;
+}
 .bigCircle{
   position: absolute;
   top: 0px;
