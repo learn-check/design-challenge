@@ -8,11 +8,32 @@
     <link rel="stylesheet" href="TemplateData/style.css">
     <script src="TemplateData/UnityProgress.js"></script>
     <script src="Build/UnityLoader.js"></script>
+    <link rel="stylesheet" href="CSS/homestyle.css">
     <script>
       var unityInstance = UnityLoader.instantiate("unityContainer", "Build/Real Build.json", {onProgress: UnityProgress});
     </script>
   </head>
   <body>
+    <section class="nav-bar-section">
+      <nav id="nav-bar">
+          <div class="burger" id="burger" onclick="openNav()"> 
+            <p>Menu</p>
+              <div class="burger-bar"></div>
+              <div class="burger-bar"></div>
+              <div class="burger-bar"></div>
+          </div>
+          <div id="mySidenav" class="sidenav">
+              <a id="closebtn" href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+              <a href="home.html">Home</a>
+              <a href="info.html">Informatie</a>
+              <a href="data.html">Data analyse</a>   
+              <a href="about.html">Over ons</a>       
+            <a href="vr.html">VR</a>             
+
+
+          </div>
+      </nav>
+  </section>
     <div class="webgl-content">
       <div id="unityContainer" style="width: 960px; height: 600px"></div>
       <div class="footer">
@@ -22,4 +43,5 @@
       </div>
     </div>
   </body>
+  <script src="JS/nav.js"></script>
 </html>
