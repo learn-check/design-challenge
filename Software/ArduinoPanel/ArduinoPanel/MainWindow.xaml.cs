@@ -157,6 +157,8 @@ namespace ArduinoPanel
             MessagesList.Add(addMsg);
             Messages.ItemsSource = null;
             Messages.ItemsSource = MessagesList;
+
+            Messages.ScrollIntoView(Messages.Items[Messages.Items.Count - 1]);
         }
 
         /// <summary>
