@@ -5,6 +5,9 @@
 #define stop2Pin 7
 #define trigPin 9
 #define echoPin 10
+#define redPin 2
+#define greenPin 3
+#define bluePin 4
 
 Servo servo1;
 Servo servo2;
@@ -39,6 +42,9 @@ void setup() {
   servo1.attach(stop1Pin);
   lcd.begin();
   lcd.backlight();
+  pinMode(redPin, OUTPUT);
+  pinMode(greenPin, OUTPUT);
+  pinMode(bluePin, OUTPUT);
 }
 
 void Distance() {
@@ -51,6 +57,12 @@ void Distance() {
   distance = duration * 0.034 / 2;
 }
 
+void RGB(int redValue, int greenValue, int blueValue){
+  analogWrite(redPin, redValue);
+  analogWrite(greenPin, greenValue);
+  analogWrite(bluePin, blueValue);
+}
+
 void showScreen() {
   if(currentStation == startStation || currentStation == endStation && hasPassedStart){
     lcd.clear();
@@ -59,20 +71,18 @@ void showScreen() {
     lcd.setCursor(1,1);
     lcd.print(currentStation);
   }
-  if(currentStation != endStation || startAtEnd){
+  if(currentStation != endStation || startAtEnd || currentStation == endStation && !hasPassedStart && !isDone){
     delay(1000);
     lcd.clear();
+    lcd.setCursor(1, 0);
+    lcd.print("Train Location:");
     if(currentStation == 3){ 
-      lcd.setCursor(1, 0);
-      lcd.print("Train Location:");
       lcd.setCursor(1,1);
       char info[64];
       sprintf(info, "%d -> 1", currentStation);
       lcd.print(info);
     }
     else{
-      lcd.setCursor(1, 0);
-      lcd.print("Train Location:");
       lcd.setCursor(1,1);
       char info[64];
       sprintf(info, "%d -> %d", currentStation, currentStation + 1);
@@ -90,8 +100,8 @@ void stopTrain(){
     delay(5);             
     }
     servo2.detach();
-    
     isOpen = false;
+    RGB(255, 0, 0);
     delay(100);
   }
   else if(!door && !isOpen){  
@@ -104,6 +114,7 @@ void stopTrain(){
     }
     servo2.detach();
     isOpen = true;
+    RGB(0, 255, 0);
     if(currentStation == startStation){
       Serial.println("Train has left the station"); 
     }
