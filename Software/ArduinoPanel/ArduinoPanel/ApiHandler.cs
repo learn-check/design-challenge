@@ -44,16 +44,15 @@ namespace ArduinoPanel
         /// <param name="customer">The given customer</param>
         /// <param name="location">Thier new location</param>
         /// <returns></returns>
-        public async Task<string> UpdateTravelLocation(CustomerInfo customer, int location)
+        public async Task UpdateTravelLocation(CustomerInfo customer, int location)
         {
             try
             {
                 await client.PostAsync($"{BASE_URL}reis/update/locatie/{customer.Id}/{location}",null);
-                return string.Empty;
             }
             catch (Exception e) // Do i really care?, no
             {
-                return e.ToString();
+                throw;
             }
         }
     }

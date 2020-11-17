@@ -43,6 +43,8 @@ namespace ArduinoPanel
         /// </summary>
         private bool CanDoNext { get; set; }
 
+        private bool CanUpdateLocation { get; set; }
+
         /// <summary>
         /// Current customer index
         /// </summary>
@@ -126,6 +128,7 @@ namespace ArduinoPanel
                             CurrentCustomer = customerInfos[CurrentIndex++];
                             await Task.Delay(3000);
                             WriteToArduino($"{CurrentCustomer.StartLocation},{CurrentCustomer.EndLocation}");
+                            CanUpdateLocation = false;
                         }
                         
                     }
@@ -133,9 +136,20 @@ namespace ArduinoPanel
                     {
                         if (nval > 0 && nval <= 3)
                         {
-                            // Updates api travel location
-                            var res = await Api.UpdateTravelLocation(CurrentCustomer, nval);
-                            DisplayMessage($"[INFO] {res}");
+
+                            if (nval == CurrentCustomer.StartLocation)
+                            {
+                                CanUpdateLocation = true;
+                                return;
+                            }
+
+
+
+                            if (CanUpdateLocation)
+                            {
+                                // Updates api travel location
+                                await Api.UpdateTravelLocation(CurrentCustomer, nval);
+                            }
                         }
                         else
                         {
@@ -197,6 +211,7 @@ namespace ArduinoPanel
         private void StopTrain()
         {
             ArduinoStartTrain.IsEnabled = true;
+            CanUpdateLocation = false;
             CanDoNext = false;
             WriteToArduino("-1");
         }
