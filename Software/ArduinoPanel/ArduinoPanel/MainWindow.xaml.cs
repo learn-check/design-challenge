@@ -140,12 +140,8 @@ namespace ArduinoPanel
                             if (nval == CurrentCustomer.StartLocation)
                             {
                                 CanUpdateLocation = true;
-                                return;
                             }
-
-
-
-                            if (CanUpdateLocation)
+                            else if (CanUpdateLocation)
                             {
                                 // Updates api travel location
                                 await Api.UpdateTravelLocation(CurrentCustomer, nval);
