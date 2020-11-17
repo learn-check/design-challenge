@@ -134,7 +134,8 @@ namespace ArduinoPanel
                         if (nval > 0 && nval <= 3)
                         {
                             // Updates api travel location
-                            await Api.UpdateTravelLocation(CurrentCustomer, nval);
+                            var res = await Api.UpdateTravelLocation(CurrentCustomer, nval);
+                            DisplayMessage($"[INFO] {res}");
                         }
                         else
                         {
