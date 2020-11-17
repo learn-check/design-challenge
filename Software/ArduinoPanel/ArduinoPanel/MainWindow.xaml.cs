@@ -32,7 +32,7 @@ namespace ArduinoPanel
         /// List of all the current reservations from the api
         /// </summary>
         private List<CustomerInfo> customerInfos = new List<CustomerInfo>();
-        
+
         /// <summary>
         /// The current customer who is traveling on the monorail
         /// </summary>
@@ -49,7 +49,7 @@ namespace ArduinoPanel
         /// Current customer index
         /// </summary>
         private int CurrentIndex { get; set; }
-        
+
 
         /// <summary>
         /// Stores all the messeages/errors
@@ -75,7 +75,7 @@ namespace ArduinoPanel
             PortInput.Text = "COM4"; // being lazy is fun
 #endif
             ArduinoConnect.Click += (e, s) => TryConnectArduino();
-            
+
             ArduinoDisconnect.Click += (e, s) => TryDisconnectArduino();
 
             ArduinoStartTrain.Click += (e, s) => StartTrain();
@@ -91,7 +91,8 @@ namespace ArduinoPanel
 
             Reservations.ItemsSource = customerInfos;
 
-            Clear.Click += (e, s) => {
+            Clear.Click += (e, s) =>
+            {
 
                 MessagesList.Clear();
                 Messages.ItemsSource = null;
@@ -106,13 +107,14 @@ namespace ArduinoPanel
         /// <param name="_event">Meh 2</param>
         private void DataReceived(object port, SerialDataReceivedEventArgs _event)
         {
-            var serial = (SerialPort) port;
+            var serial = (SerialPort)port;
 
             var data = serial.ReadExisting();
 
             if (!string.IsNullOrEmpty(data) && data.Last() == '\n' && data != "-1")
             {
-                Dispatcher.Invoke(new Action( async () => {
+                Dispatcher.Invoke(new Action(async () =>
+                {
 
                     // monorail has reached the given station
                     if (data.Equals("Train has arrived\r\n"))
@@ -122,7 +124,7 @@ namespace ArduinoPanel
                             DisplayMessage("[INFO] Lijst is leeg, trein gaat stoppen");
                             StopTrain();
                         }
-                        else if (CanDoNext) 
+                        else if (CanDoNext)
                         {
                             // send the next location for the monorail to travel to
                             CurrentCustomer = customerInfos[CurrentIndex++];
@@ -130,22 +132,15 @@ namespace ArduinoPanel
                             WriteToArduino($"{CurrentCustomer.StartLocation},{CurrentCustomer.EndLocation}");
                             CanUpdateLocation = false;
                         }
-                        
+
                     }
-                    else if (int.TryParse(data, out var nval)) 
+                    else if (int.TryParse(data, out var nval))
                     {
                         if (nval > 0 && nval <= 3)
                         {
 
-                            if (nval == CurrentCustomer.StartLocation)
-                            {
-                                CanUpdateLocation = true;
-                            }
-                            else if (CanUpdateLocation)
-                            {
-                                // Updates api travel location
-                                await Api.UpdateTravelLocation(CurrentCustomer, nval);
-                            }
+                            // Updates api travel location
+                            await Api.UpdateTravelLocation(CurrentCustomer, nval);
                         }
                         else
                         {
@@ -177,7 +172,7 @@ namespace ArduinoPanel
         /// </summary>
         private void StartTrain()
         {
-            
+
             if (Arduino.IsOpen && customerInfos.Count > 0)
             {
                 CurrentCustomer = customerInfos[CurrentIndex++];
@@ -199,7 +194,7 @@ namespace ArduinoPanel
                     DisplayMessage("[INFO] Niet genoeg mensen");
                 }
             }
-        } 
+        }
 
         /// <summary>
         /// Tells the arduino to stop moving the monorail
@@ -236,7 +231,8 @@ namespace ArduinoPanel
         {
             // The timer runs on a different thread so we need to invoke
             // in to the main thread before we can update the datagrid with the reservations
-            Dispatcher.Invoke(new Action( async () => {
+            Dispatcher.Invoke(new Action(async () =>
+            {
 
                 StatusLabel.Content = "Bijwerken.....";
 

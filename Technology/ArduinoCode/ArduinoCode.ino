@@ -210,6 +210,8 @@ void loop() {
         door = false;
         stopTrain();
       }
+      Serial.println(currentStation);
+      delay(100);
       hasReceived = true;
       message = "";
       showScreen();

@@ -48,7 +48,7 @@ namespace ArduinoPanel
         {
             try
             {
-                await client.PostAsync($"{BASE_URL}reis/update/locatie/{customer.Id}/{location}",null);
+                await client.GetAsync($"{BASE_URL}reis/update/locatie/{customer.Id}/{location}");
             }
             catch (Exception e) // Do i really care?, no
             {
