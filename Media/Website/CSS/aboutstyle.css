@@ -175,13 +175,8 @@
 
 .aboutContainer{
   display: grid;
-  width: 80%;
-  
-  
-  margin: auto;
-  
-
-  
+  width: 80%;  
+  margin: auto;  
   grid-gap: 10px;
 }
 @media screen and (max-height: 800px) {
