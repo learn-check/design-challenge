@@ -21,6 +21,7 @@ namespace ArduinoAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            /// This is needed for setting up a reverse proxy with nginx
             services.Configure<ForwardedHeadersOptions>(options =>
             {
                 options.KnownProxies.Add(IPAddress.Parse("10.0.0.100"));
@@ -28,6 +29,8 @@ namespace ArduinoAPI
 
             services.AddControllers();
 
+            /// Adds out own custom service
+            /// There will be a single service for all of the incomming request, because normally its a single service per request.
             services.AddSingleton<IMemoryStorage, MemoryStorage>();
         }
 
@@ -39,6 +42,7 @@ namespace ArduinoAPI
                 app.UseDeveloperExceptionPage();
             }
 
+            /// This is needed for setting up a reverse proxy with nginx
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
@@ -47,11 +51,6 @@ namespace ArduinoAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
-            app.UseForwardedHeaders(new ForwardedHeadersOptions
-            {
-                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
-            });
 
             app.UseAuthentication();
 

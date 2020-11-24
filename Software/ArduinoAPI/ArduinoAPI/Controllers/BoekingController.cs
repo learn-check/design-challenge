@@ -14,15 +14,21 @@ namespace ArduinoAPI.Controllers
     [ApiController]
     public class BoekingController : ControllerBase
     {
+        /// <summary>
+        /// Storage service for storing reservation and travel data
+        /// </summary>
         private readonly IMemoryStorage memoryStorage;
 
+        /// <summary>
+        /// Prefix for the travel log of a user
+        /// </summary>
         private readonly string TRAVEL_PREFIX = "travel_log_";
 
         public BoekingController(IMemoryStorage storage)
         {
             memoryStorage = storage;
 
-#if DEBUG
+#if DEBUG // Dummy data when in debug
             memoryStorage.AddItem("123", new CustomerInfo {
                 Name = "Boris",
                 Surname = "Mulder",
@@ -35,6 +41,11 @@ namespace ArduinoAPI.Controllers
 #endif
         }
 
+        /// <summary>
+        /// Returns a web page where you can track the current location of the monorail
+        /// </summary>
+        /// <param name="id">Customer Id</param>
+        /// <returns></returns>
         [HttpGet("reis/status/{id}")]
         public async  Task<IActionResult> Status(string id)
         {
@@ -61,6 +72,7 @@ namespace ArduinoAPI.Controllers
             var bindings = new Dictionary<string, object>() {
                 {"[PAGE_TITLE]", info.Surname },
                 {"[LOCATION]", log.CurrentLocation },
+                {"[END_LOCATION]", info.EndLocation },
                 {"[API_LOCATION_URL]",locationUrl },
             };
 
@@ -74,6 +86,11 @@ namespace ArduinoAPI.Controllers
             return Content(page, "text/html", Encoding.UTF8);
         }
 
+        /// <summary>
+        /// Endpoint for placing a reservation from our website
+        /// </summary>
+        /// <param name="customerInfo">Customer info to be stored</param>
+        /// <returns>A redirect to the status page where you can see your information</returns>
         [HttpPost("reserveren")]
         public IActionResult PostInfo([FromForm] CustomerInfo customerInfo)
         {
@@ -85,9 +102,11 @@ namespace ArduinoAPI.Controllers
             return RedirectToAction("Confirm", new { id = userID });
         }
 
-
-        // TODO met ruben even kijken
-        // Hij moet bij elke peron een update sturen
+        /// <summary>
+        /// Endpoitn for updating a customers location
+        /// </summary>
+        /// <param name="id">Customers id</param>
+        /// <param name="nloc">The new location</param>
         [HttpGet("reis/update/locatie/{id}/{nloc}")]
         public void UpdateTravel(string id, int? nloc)
         {
@@ -100,7 +119,12 @@ namespace ArduinoAPI.Controllers
             memoryStorage.UpdateItem($"{TRAVEL_PREFIX}{id}", log);
         }
 
-        [HttpGet("reis/log")]
+        /// <summary>
+        /// Endpoint for requesting a customers travel log 
+        /// </summary>
+        /// <param name="id">Customers id</param>
+        /// <returns>The customers travel log or nan if it can't be found</returns>
+        [HttpGet("reis/log/{id}")]
         public object GetTravelLog(string id)
         {
             var log = memoryStorage.GetItem<TravelInfo>($"{TRAVEL_PREFIX}{id}");
@@ -110,18 +134,28 @@ namespace ArduinoAPI.Controllers
             return log;
         }
 
+        /// <summary>
+        /// </summary>
+        /// <returns>A list of all the travel logs</returns>
         [HttpGet("reis/alles")]
         public object GetAllTravelLogs()
         {
             return memoryStorage.GetAllItems<TravelInfo>();
         }
 
+        /// <summary>
+        /// </summary>
+        /// <returns>A list of all the customers</returns>
         [HttpGet("reserveringen/alles")]
         public object GetAllReservations()
         {
             return memoryStorage.GetAllItems<CustomerInfo>();
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="id">Travel id</param>
+        /// <returns>The current location of the customer or 0 if not found</returns>
         [HttpGet("reis/locatie/{id}")]
         public int GetTravelLogLocation(string id)
         {
@@ -132,6 +166,11 @@ namespace ArduinoAPI.Controllers
             return log.CurrentLocation;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id">Customer id</param>
+        /// <returns>A webpage displaying the customers reservation info</returns>
         [HttpGet("status/{id}")]
         [Produces("text/html")]
         public async Task<IActionResult> Confirm(string id)
@@ -176,6 +215,11 @@ namespace ArduinoAPI.Controllers
             return Content(page, "text/html", Encoding.UTF8);
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="min">Minial size</param>
+        /// <param name="max">Maximal size</param>
+        /// <returns>A random ID</returns>
         private string GenID(int min = 0, int max = 16)
         {
             return Guid.NewGuid().ToString().Substring(min, max).Replace("-", "");

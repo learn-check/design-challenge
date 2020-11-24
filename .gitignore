@@ -268,8 +268,9 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
-
+design-challenge\Media\Design Challenge  VR Model\Library\il2cpp_cache\linkresult_5CEE5851093ED8EDCA1CCC4E6749FC02\build.bc
 # Cake - Uncomment if you are using it
 # tools/
 
 # End of https://www.toptal.com/developers/gitignore/api/aspnetcore
+Media/Design Challenge  VR Model/Library/il2cpp_cache/linkresult_5CEE5851093ED8EDCA1CCC4E6749FC02/build.bc

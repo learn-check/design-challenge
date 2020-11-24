@@ -3,6 +3,9 @@ using System.Linq;
 
 namespace ArduinoAPI.Service
 {
+    /// <summary>
+    /// See <see cref="IMemoryStorage"/>
+    /// </summary>
     public class MemoryStorage : IMemoryStorage
     {
         private readonly Dictionary<string, object> Items;
@@ -12,30 +15,30 @@ namespace ArduinoAPI.Service
             Items = new Dictionary<string, object>();
         }
 
-        public bool DeleteItem(string name)
+        public bool DeleteItem(string key)
         {
-            return Items.Remove(name);
+            return Items.Remove(key);
         }
 
-        public void UpdateItem(string id, object obj)
+        public void UpdateItem(string key, object value)
         {
-            if (Items.ContainsKey(id))
+            if (Items.ContainsKey(key))
             {
-                Items[id] = obj;
+                Items[key] = value;
             }
         }
 
-        public bool AddItem(string name, object value)
+        public bool AddItem(string key, object value)
         {
-            if (Items.ContainsKey(name) || value == null) return false;
+            if (Items.ContainsKey(key) || value == null) return false;
 
-            return Items.TryAdd(name, value);
+            return Items.TryAdd(key, value);
         }
 
-        public T GetItem<T>(string name)
+        public T GetItem<T>(string key)
         {
-            if (Items.ContainsKey(name))
-                return (T)Items[name];
+            if (Items.ContainsKey(key))
+                return (T)Items[key];
             else
                 return default;
         }
